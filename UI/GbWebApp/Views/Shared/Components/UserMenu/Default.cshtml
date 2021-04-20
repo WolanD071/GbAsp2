@@ -1,0 +1,10 @@
+﻿<div class="shop-menu pull-right">
+    <ul class="nav navbar-nav">
+        <li><a href="#"><i class="fa fa-user"></i> @(User.Identity?.Name ?? "Guest")</a></li>
+        <li><a asp-controller="Shop" asp-action="ShopCheckOut"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+        <li><a asp-controller="Shop" asp-action="ShopCart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+        <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i> Login</a></li>
+        <li style="padding-left: 0; padding-right: 0;"><a> or </a></li>
+        <li><a asp-controller="Account" asp-action="Register"><i class="fa fa-lock"></i> SignUp</a></li>
+    </ul>
+</div>

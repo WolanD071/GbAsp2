@@ -1,0 +1,12 @@
+﻿@{ ViewBag.Title = "Prohibited!"; }
+
+<div class="container">
+    <h3 style="color: darkred; font-weight: bold;">ACCESS DENIED!</h3>
+    <br />
+    <a asp-action="Index" asp-controller="Home">Home</a>
+    @if (ViewBag.ReturnUrl != null)
+    {
+        <span>| <a href="@ViewBag.ReturnUrl">Try Again &#128521;</a></span>
+    }
+    <br /><br />
+</div>

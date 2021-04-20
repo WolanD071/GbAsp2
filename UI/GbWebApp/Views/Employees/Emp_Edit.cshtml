@@ -1,0 +1,58 @@
+﻿@model EmployeeViewModel
+
+@{ ViewBag.Title = "Edit "; }
+
+<div class="container">
+    <h4>Edit Employee</h4>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Emp_Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" hidden="hidden">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" disabled="disabled" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Patronymic" class="control-label"></label>
+                    <input asp-for="Patronymic" class="form-control" />
+                    <span asp-validation-for="Patronymic" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Snils" class="control-label"></label>
+                    <input asp-for="Snils" class="form-control" />
+                    <span asp-validation-for="Snils" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Salary" class="control-label"></label>
+                    <input asp-for="Salary" class="form-control" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Age" class="control-label"></label>
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 50%; margin: 0 25%; text-align: center;">
+                    <input type="submit" value="Save!" class="btn btn-primary" /><hr />
+                    @if (Model.Id != -1)
+                    {
+                        <div>@Html.ActionLink($"Back to {Model.FirstName}\'s card", "Emp_Details", new { Id = Model.Id })<br />or<br /></div>
+                    }
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

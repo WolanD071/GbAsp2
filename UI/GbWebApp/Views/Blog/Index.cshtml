@@ -1,0 +1,32 @@
+﻿@model IQueryable<BlogPost>
+@{ ViewBag.Title = "Blog "; }
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <partial name="../Shared/Partial/_LeftSideBar" />
+            </div>
+            <div class="col-sm-9">
+                <div class="blog-post-area">
+                    <h2 class="title text-center">Latest From our Blog</h2>
+                    @foreach (var bpost in Model)
+                    {
+                        <div class="single-blog-post">
+                            <partial name="Partial/_SinglePost" model="bpost" />
+                            <a class="btn btn-primary" asp-controller="Blog" asp-action="BlogSingle" asp-route-id="@bpost.Id">Read More</a>
+                        </div>
+                    }
+                    <div class="pagination-area">
+                        <ul class="pagination">
+                            <li><a href="#" class="active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

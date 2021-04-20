@@ -1,0 +1,32 @@
+﻿@model ShopViewModel
+
+@{ ViewBag.Title = "Shop "; }
+
+<partial name="Partial/_Adver" />
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <partial name="../Shared/Partial/_LeftSideBar" />
+            </div>
+            <div class="col-sm-9 padding-right">
+                <partial name="../Home/Partial/_Featured" model="Model.Products" />
+                @*<partial name="../Home/Partial/_Featured" /> !!! if model isn't passed, parent model will be used !!!*@
+                <ul class="pagination">
+                    @for (int p = 1; p <= Model.PagingInfo.TotalPages; p++)
+                    {
+                        @if (p == Model.PagingInfo.CurrentPage)
+                        {
+                            <li class="active"><a>@p</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-action="Index" asp-route-prodPage="@p">@p</a></li>
+                        }
+                    }
+                    @*<li><a href="#">&raquo;</a></li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

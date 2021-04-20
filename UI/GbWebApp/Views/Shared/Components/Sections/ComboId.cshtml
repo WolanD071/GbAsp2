@@ -1,0 +1,37 @@
+﻿@model (int, IEnumerable<SectionViewModel>)
+
+<select required name="SectionId" class="form-control">@*"asp-for" option doesn't work, but "name" works... however, you must be very carefully with it!*@
+    @*<option value="" disabled>Please select...</option>*@
+    @foreach (var sect in Model.Item2)
+    {
+        @if (sect.Id == Model.Item1)
+        {
+            <option value="@sect.Id" selected>@sect.Name</option>
+            @if (sect.ChildSections.Count > 0)
+            {
+                @foreach (var item in sect.ChildSections)
+                {
+                    <option value="@item.Id">&nbsp;&mdash;&nbsp;@item.Name</option>
+                }
+            }
+        }
+        else
+        {
+            <option value="@sect.Id">@sect.Name</option>
+            @if (sect.ChildSections.Count > 0)
+            {
+                @foreach (var item in sect.ChildSections)
+                {
+                    @if (item.Id == Model.Item1)
+                    {
+                        <option value="@item.Id" selected>&nbsp;&mdash;&nbsp;@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">&nbsp;&mdash;&nbsp;@item.Name</option>
+                    }
+                }
+            }
+        }
+    }
+</select>

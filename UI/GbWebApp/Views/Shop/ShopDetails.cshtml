@@ -1,0 +1,17 @@
+﻿@model ProductViewModel
+@{ ViewBag.Title = $"Product '{Model.Name}' Details "; }
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <partial name="../Shared/Partial/_LeftSideBar" model="Model" />
+            </div>
+            <div class="col-sm-9 padding-right">
+                <partial name="Partial/_ProductDetails" />
+                <partial name="../Home/Partial/_CategoryTab" />
+                <partial name="../Home/Partial/_Recommended" />
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,22 @@
+﻿@model BlogPost
+
+<h3>@Model.Title</h3>
+<div class="post-meta">
+    <ul>
+        <li><i class="fa fa-user"></i> @(Model.Author?.UserName ?? "no author")</li>
+        <li><i class="fa fa-clock-o"></i> @Model.Created.TimeOfDay.ToString()</li>
+        <li><i class="fa fa-calendar"></i> @Model.Created.Date.ToShortDateString()</li>
+    </ul>
+    <span>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star-half-o"></i>
+        @Model.Rating
+    </span>
+</div>
+<a href="">
+    <img src="~/images/blog/@Model.Image" alt="">
+</a>
+<p>@Model.Content</p>

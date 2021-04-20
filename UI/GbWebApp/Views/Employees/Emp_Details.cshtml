@@ -1,0 +1,64 @@
+﻿@using GbWebApp.Domain.Entities.Identity;
+@model Employee
+
+@{ ViewBag.Title = "Details "; }
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $('.delconfirm').on('click', function () { return confirm('Are you sure?'); });
+    </script>
+}
+
+@if (Model != null)
+{
+    <div class="container">
+        <h4>detailed info about employee: @Model.FirstName @Model.LastName ...</h4>
+        <br />
+        <dl class="row">
+            <dt class="col-sm-2" hidden="hidden">@Html.DisplayNameFor(model => model.Id)&nbsp;</dt>
+            <dd class="col-sm-10" hidden="hidden">
+                @Html.DisplayFor(model => model.Id)&nbsp; @*without 'nbsp' markup will crash if this model property become hidden!!!*@
+            </dd>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.FirstName)&nbsp;</dt>
+            <dd class="col-sm-10">
+                Sir (<small><i>Lady</i></small>)&nbsp;@Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Patronymic)&nbsp;</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Patronymic)&nbsp;
+            </dd>
+            <dt class="col-sm-2">@Html.DisplayNameFor(model => model.LastName)&nbsp;</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LastName)&nbsp;
+            </dd>
+            <dt class="col-sm-2">Age</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Age)&nbsp;
+            </dd>
+            <dt class="col-sm-2">SNILS</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Snils)&nbsp;
+            </dd>
+            <dt class="col-sm-2">Salary</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Salary)&nbsp;$
+            </dd>
+        </dl>
+        <br />
+        <table>
+            <tr>
+                <td>@Html.ActionLink("<< back to list", "Index") |</td>
+                @if (User.IsInRole(Role.Admin))
+                {
+                    <td><form asp-action="Emp_Del_BadGuy" asp-route-id="@Model.Id"><input type="submit" class="delconfirm" style="color: red;" value="Delete" /></form></td>
+                    <td>| @Html.ActionLink("edit >>", "Emp_Edit", new { id = Model.Id })</td>
+                }
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <div class="container"><h4>sorry... employee with such ID not found!</h4></div>
+}

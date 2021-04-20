@@ -1,0 +1,81 @@
+﻿@model ProductViewModel
+
+@{ ViewBag.Title = "Admin - Product Edit"; }
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $('#loadimginput').on('click', function () {
+            $('#loadfile').click();
+            var fname = $('#loadfile').val().split('\\').pop();
+            if (fname != '') { $('#loadimginput').val(fname); };
+        });
+        $('#loadimginput').on('blur', function () {
+            var fname = $('#loadfile').val().split('\\').pop();
+            if (fname != '') { $('#loadimginput').val(fname); };
+        });
+    </script>
+}
+
+@if (Model.Id == 0)
+{
+<h4>Create New Product</h4>
+}
+else
+{
+<h4>Edit Product</h4>
+}
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden="hidden">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" disabled="disabled" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input required asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <select required asp-for="BrandId" class="form-control">
+                    <vc:brands combo="true" id="Model.BrandId"></vc:brands>
+                </select>
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Section" class="control-label"></label>
+                <vc:sections combo="true" id="Model.SectionId"></vc:sections>
+                <span asp-validation-for="SectionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input required asp-for="ImageUrl" class="form-control" id="loadimginput" />
+                <input type="file" id="loadfile" style="visibility:hidden;" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group" @*style="width: 50%; margin: 0 25%; text-align: center;"*@>
+                <a asp-controller="Products" asp-action="Index" class="btn btn-default">
+                    <i class="glyphicon glyphicon-arrow-left"></i> Back to List
+                </a>
+                @if (Model.Id == 0)
+                {
+                    <input type="submit" value="Create Product!" class="btn btn-primary" />
+                }
+                @if (Model.Id != 0)
+                {
+                    <input type="submit" value="Save Changes!" class="btn btn-primary" />
+                }
+            </div>
+        </form>
+    </div>
+</div>

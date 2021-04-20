@@ -1,0 +1,25 @@
+﻿@model GbWebApp.Domain.Entities.Identity.User
+
+@{
+    ViewBag.Title = "User Profile ";
+    Layout = "_UsersLayout";
+}
+
+<h2>@ViewBag.Title</h2>
+<dl class="row">
+    @*<dt class="col-sm-4">@Html.DisplayNameFor(model => model.Id)&nbsp;<br /></dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)&nbsp;<br />
+        </dd>*@
+    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.UserName)&nbsp;<br />&nbsp;</dt>
+    <dd class="col-sm-8">@Html.DisplayFor(model => model.UserName)&nbsp;<br />&nbsp;</dd>
+    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Email)&nbsp;<br /></dt>
+    <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)&nbsp;<br />&nbsp;</dd>
+    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.PhoneNumber)&nbsp;<br /></dt>
+    <dd class="col-sm-8">@Html.DisplayFor(model => model.PhoneNumber)&nbsp;<br />&nbsp;</dd>
+    <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TwoFactorEnabled)&nbsp;<br /></dt>
+    <dd class="col-sm-8">
+        @*@Html.DisplayFor(model => model.TwoFactorEnabled)&nbsp;<br />&nbsp;*@
+        <input type="checkbox" value="@Model.TwoFactorEnabled" disabled="disabled" />&nbsp;<br />&nbsp;
+    </dd>
+</dl>

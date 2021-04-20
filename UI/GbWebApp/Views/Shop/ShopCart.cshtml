@@ -1,0 +1,14 @@
+﻿@model (CartViewModel, OrderViewModel)
+@{ ViewBag.Title = "Cart "; }
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 padding-right">
+                <partial name="Partial/_CartItems" model="Model.Item1" />
+                <partial name="Partial/_DoAction" model="Model.Item2"
+                         view-data="@(new ViewDataDictionary(ViewData) { { "TotalPrice", Model.Item1.TotalPrice } })" />
+            </div>
+        </div>
+    </div>
+</section>

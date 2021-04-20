@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@1.10.2",
+      "destination": "wwwroot/js/"
+    },
+    {
+      "library": "twitter-bootstrap@3.0.3",
+      "destination": "wwwroot/js/"
+    },
+    {
+      "library": "font-awesome@4.0.3",
+      "destination": "wwwroot/fonts/"
+    }
+  ]
+}

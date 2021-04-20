@@ -1,0 +1,16 @@
+﻿@model (int, IEnumerable<BrandsViewModel>)
+
+@*<select required asp-for="BrandId" class="form-control">*@
+@*<option value="" disabled>Please select...</option>*@
+@foreach (var brand in Model.Item2)
+{
+    @if (brand.Id == Model.Item1)
+    {
+        <option value="@brand.Id" selected>@brand.Name</option>
+    }
+    else
+    {
+        <option value="@brand.Id">@brand.Name</option>
+    }
+}
+@*</select>*@

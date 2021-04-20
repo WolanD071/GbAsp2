@@ -1,0 +1,38 @@
+﻿@model IEnumerable<UserOrderViewModel>
+
+@{
+    ViewBag.Title = "User Orders ";
+    Layout = "_UsersLayout";
+}
+@if (Model.Count() > 0)
+{
+    var o = Model.First();
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@Html.DisplayFor(m => o.Name)</th>
+                <th>@Html.DisplayFor(m => o.Address)</th>
+                <th>@Html.DisplayFor(m => o.Phone)</th>
+                <th>@Html.DisplayFor(m => o.TotalPrice)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var i = 1;}
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>@order.Name</td>
+                    <td>@order.Address</td>
+                    <td>@order.Phone</td>
+                    <td>@order.TotalPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>You have no active orders, <a asp-action="Index" asp-controller="Shop">go to shop!</a></h4>
+}

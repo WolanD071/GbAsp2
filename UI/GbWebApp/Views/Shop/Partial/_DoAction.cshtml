@@ -1,0 +1,75 @@
+﻿@model OrderViewModel
+
+<section id="do_action">
+    <div class="container">
+        <div class="heading">
+            <h3>What would you like to do next?</h3>
+            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+        </div>
+        <form asp-action="OrderCheckOut">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="chose_area">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <ul>
+                            <div class="form-group user_info">
+                                <label asp-for="Name" class="sr-only"></label>
+                                <input required asp-for="Name" class="form-control" placeholder="Name" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group user_info">
+                                <label asp-for="Phone" class="sr-only"></label>
+                                <input required asp-for="Phone" class="form-control" placeholder="Phone Number" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group user_info">
+                                <label asp-for="Address" class="sr-only"></label>
+                                <input required asp-for="Address" class="form-control" placeholder="Address" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </ul>
+                        <ul class="user_info">
+                            <li class="single_field">
+                                <label>Country:</label>
+                                <select>
+                                    <option>United States</option>
+                                    <option>UK</option>
+                                    <option>Canada</option>
+                                </select>
+                            </li>
+                            <li class="single_field">
+                                <label>Region / State:</label>
+                                <select>
+                                    <option>Select</option>
+                                    <option>London</option>
+                                    <option>Alaska</option>
+                                    <option>Canada</option>
+                                </select>
+                            </li>
+                            <li class="single_field zip-field">
+                                <label>Zip Code:</label>
+                                <input type="text">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="total_area">
+                        @{ ViewData.TryGetValue("TotalPrice", out var total_price); }
+                        @{ int tax = 2, ship = 0; }
+                        @if (total_price is decimal order_price and > 0)
+                        {
+                            <ul class="user_option">
+                                <li>Cart Sub Total <span>@order_price.ToString("C")</span></li>
+                                <li>Eco Tax <span>@tax</span></li>
+                                <li>Shipping Cost <span>@(ship == 0 ? "Free" : ship.ToString("C"))</span></li>
+                                <li>Total <span>@((order_price + tax + ship).ToString("C"))</span></li>
+                                <input class="btn btn-default check_out" type="submit" style="width:100%;margin:10px 0;" value="Check it Out!" />
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

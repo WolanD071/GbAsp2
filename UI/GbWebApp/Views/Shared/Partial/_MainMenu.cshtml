@@ -1,0 +1,26 @@
+﻿<div class="mainmenu pull-left">
+    <ul class="nav navbar-nav collapse navbar-collapse">
+        <li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+        <li class="dropdown">
+            <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+            <ul role="menu" class="sub-menu">
+                <li><a asp-controller="Shop" asp-action="Index">Products</a></li>
+                @*<li><a asp-controller="Shop" asp-action="ShopDetails">Product Details</a></li>*@
+                <li><a asp-controller="Shop" asp-action="ShopCheckOut">Checkout</a></li>
+                <li><a asp-controller="Shop" asp-action="ShopCart">Cart</a></li>
+                <li><a asp-controller="Shop" asp-action="ShopLogin">Login</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Blog<i class="fa fa-angle-down"></i></a>
+            <ul role="menu" class="sub-menu">
+                <li><a asp-controller="Blog" asp-action="Index">Blog List</a></li>
+                @*<li><a asp-controller="Blog" asp-action="BlogSingle">Blog Single</a></li>*@
+            </ul>
+        </li>
+        <li><a asp-controller="_404" asp-action="Index">404 (Ctrl)</a></li>
+        <li><a asp-controller="Home" asp-action="_404">404 (View)</a></li>
+        <li><a asp-controller="Contacts" asp-action="Index">Contact Us</a></li>
+        <li><a asp-controller="Employees" asp-action="Index">Our Stuff</a></li>
+    </ul>
+</div>

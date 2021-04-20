@@ -1,0 +1,54 @@
+﻿@model CartViewModel
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description"></td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var (prod, quant) in Model.Items)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a><img src="~/images/shop/@prod.ImageUrl" style="width: 22% !important; height: 22% !important;" alt=""></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a asp-controller="Shop" asp-action="ShopDetails" asp-route-id="@prod.Id">@prod.Name</a></h4>
+                                <p>Web ID: @prod.Id.ToString("000000")</p>
+                            </td>
+                            <td class="cart_price"><p>@prod.Price.ToString("C")</p></td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <a asp-controller="Shop" asp-action="AddToCart" asp-route-id="@prod.Id" class="cart_quantity_up"> + </a>
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="@quant" autocomplete="off" size="2">
+                                    <a asp-controller="Shop" asp-action="DecFromCart" asp-route-id="@prod.Id" class="cart_quantity_down"> - </a>
+                                </div>
+                            </td>
+                            <td class="cart_total"><p class="cart_total_price">@((prod.Price * quant).ToString("C"))</p></td>
+                            <td class="cart_delete">
+                                <a asp-controller="Shop" asp-action="RemoveFromCart" asp-route-id="@prod.Id" class="cart_quantity_delete">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

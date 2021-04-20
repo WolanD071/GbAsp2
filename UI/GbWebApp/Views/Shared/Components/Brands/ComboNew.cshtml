@@ -1,0 +1,9 @@
+﻿@model IEnumerable<BrandsViewModel>
+
+@*<select required class="form-control">*@
+<option value="" disabled selected>Please select...</option>
+@foreach (var brand in Model)
+{
+    <option value="@brand.Id">@brand.Name</option>
+}
+@*</select>*@

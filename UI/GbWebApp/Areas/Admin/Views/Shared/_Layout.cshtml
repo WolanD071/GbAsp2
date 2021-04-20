@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | GB ASP.NET Course</title>
+    <partial name="Partial/_Styles" />
+    @await RenderSectionAsync("Styles", false)
+</head>
+<body>
+    <div id="wrapper">
+        <partial name="Partial/_Header" />
+        <partial name="Partial/_MainMenu" />
+        <div id="page-wrapper">
+            <div id="page-inner">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <partial name="Partial/_Footer" />
+    <partial name="Partial/_Scripts" />
+    @await RenderSectionAsync("Scripts", false)
+</body>
+</html>
