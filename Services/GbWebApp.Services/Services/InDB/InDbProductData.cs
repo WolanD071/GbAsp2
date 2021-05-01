@@ -1,11 +1,11 @@
-﻿using GbWebApp.DAL.Context;
+﻿using System.Linq;
+using GbWebApp.DAL.Context;
 using GbWebApp.Domain;
 using GbWebApp.Domain.Entities;
-using System.Linq;
 using GbWebApp.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace GbWebApp.Infrastructure.Services.InDB
+namespace GbWebApp.Services.Services.InDB
 {
     public class InDbProductData : InDbAnyEntity<Product>, IProductData
     {

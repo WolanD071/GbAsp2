@@ -1,8 +1,8 @@
-﻿using GbWebApp.Domain.Entities;
-using System.Linq;
+﻿using System.Linq;
+using GbWebApp.Domain.Entities;
 using GbWebApp.Domain.ViewModels;
 
-namespace GbWebApp.Infrastructure.Mappers
+namespace GbWebApp.Services.Mappers
 {
     public static class ProductMapper
     {

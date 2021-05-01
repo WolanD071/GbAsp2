@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Linq;
-using GbWebApp.DAL.Context;
-using System.Threading.Tasks;
-using GbWebApp.Domain.Entities;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Threading.Tasks;
+using GbWebApp.DAL.Context;
+using GbWebApp.Domain.Entities;
 using GbWebApp.Domain.Entities.Identity;
 using GbWebApp.Domain.ViewModels;
 using GbWebApp.Interfaces.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
-namespace GbWebApp.Infrastructure.Services.InDB
+namespace GbWebApp.Services.Services.InDB
 {
     public class InDbOrdertData : IOrderService
     {

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using GbWebApp.DAL.Context;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using GbWebApp.DAL.Context;
 using GbWebApp.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
-namespace GbWebApp.Data
+namespace GbWebApp.Services.Data
 {
     public class AppDBInitializer
     {

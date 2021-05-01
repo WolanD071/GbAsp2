@@ -1,11 +1,11 @@
-﻿using GbWebApp.DAL.Context;
-using GbWebApp.Domain.Entities.Base.Interfaces;
-using System;
+﻿using System;
 using System.Linq;
+using GbWebApp.DAL.Context;
+using GbWebApp.Domain.Entities.Base.Interfaces;
 using GbWebApp.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace GbWebApp.Infrastructure.Services.InDB
+namespace GbWebApp.Services.Services.InDB
 {
     public class InDbAnyEntity<T> : IAnyEntityCRUD<T>
         where T : class, IEntity

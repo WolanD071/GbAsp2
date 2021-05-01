@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using GbWebApp.Domain.Entities.Identity;
-using GbWebApp.Infrastructure.Mappers;
 using Microsoft.EntityFrameworkCore;
 using GbWebApp.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using GbWebApp.Domain.ViewModels;
 using GbWebApp.Interfaces.Services;
+using GbWebApp.Services.Mappers;
 
 namespace GbWebApp.Areas.Admin.Controllers
 {

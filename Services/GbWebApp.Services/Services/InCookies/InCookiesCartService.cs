@@ -1,13 +1,13 @@
-﻿using GbWebApp.Infrastructure.Mappers;
-using Microsoft.AspNetCore.Http;
-using GbWebApp.Domain.Entities;
-using Newtonsoft.Json;
+﻿using System.Linq;
 using GbWebApp.Domain;
-using System.Linq;
+using GbWebApp.Domain.Entities;
 using GbWebApp.Domain.ViewModels;
 using GbWebApp.Interfaces.Services;
+using GbWebApp.Services.Mappers;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
-namespace GbWebApp.Infrastructure.Services.InCookies
+namespace GbWebApp.Services.Services.InCookies
 {
     public class InCookiesCartService : ICartService
     {

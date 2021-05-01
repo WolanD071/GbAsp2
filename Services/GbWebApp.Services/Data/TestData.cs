@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using GbWebApp.Domain.Entities;
+
 //using GbWebApp.Models;
 
-namespace GbWebApp.Data
+namespace GbWebApp.Services.Data
 {
     public static class TestData
     {
