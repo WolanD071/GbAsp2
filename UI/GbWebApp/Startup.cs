@@ -1,8 +1,5 @@
-using GbWebApp.Infrastructure.Services.InCookies;
 using Microsoft.Extensions.DependencyInjection;
-using GbWebApp.Infrastructure.Services.InDB;
 using Microsoft.Extensions.Configuration;
-using GbWebApp.Infrastructure.Interfaces;
 using GbWebApp.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +7,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using GbWebApp.DAL.Context;
-using GbWebApp.Data;
+using GbWebApp.Interfaces.Services;
+using GbWebApp.Services.Data;
+using GbWebApp.Services.Services.InCookies;
+using GbWebApp.Services.Services.InDB;
 
 namespace GbWebApp
 {

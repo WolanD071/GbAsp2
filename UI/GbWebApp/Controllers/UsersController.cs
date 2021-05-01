@@ -1,11 +1,11 @@
-﻿using GbWebApp.Infrastructure.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using GbWebApp.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using GbWebApp.ViewModels;
 using System.Linq;
 using GbWebApp.DAL.Context;
+using GbWebApp.Domain.ViewModels;
+using GbWebApp.Interfaces.Services;
 
 namespace GbWebApp.Controllers
 {

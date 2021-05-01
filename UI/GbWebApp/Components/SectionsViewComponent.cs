@@ -1,8 +1,8 @@
-﻿using GbWebApp.Infrastructure.Interfaces;
-using GbWebApp.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using GbWebApp.Domain.ViewModels;
+using GbWebApp.Interfaces.Services;
 
 namespace GbWebApp.Components
 {

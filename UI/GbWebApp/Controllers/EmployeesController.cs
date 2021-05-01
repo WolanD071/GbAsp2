@@ -1,9 +1,9 @@
 ﻿using System;
-using GbWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using GbWebApp.Domain.Entities;
 using GbWebApp.Domain.Entities.Identity;
-using GbWebApp.Infrastructure.Interfaces;
+using GbWebApp.Domain.ViewModels;
+using GbWebApp.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 
 namespace GbWebApp.Controllers

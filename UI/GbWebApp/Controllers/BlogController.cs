@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GbWebApp.Infrastructure.Interfaces;
 using GbWebApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using GbWebApp.Interfaces.Services;
 
 namespace GbWebApp.Controllers
 {
