@@ -1,8 +1,8 @@
 ﻿using GbWebApp.DAL.Context;
 using GbWebApp.Domain;
 using GbWebApp.Domain.Entities;
-using GbWebApp.Infrastructure.Interfaces;
 using System.Linq;
+using GbWebApp.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace GbWebApp.Infrastructure.Services.InDB

@@ -1,6 +1,6 @@
-﻿using GbWebApp.ViewModels;
+﻿using GbWebApp.Domain.ViewModels;
 
-namespace GbWebApp.Models
+namespace GbWebApp.Domain.Models
 {
     public class Employee
     {

@@ -1,11 +1,11 @@
-﻿using GbWebApp.Infrastructure.Interfaces;
-using GbWebApp.Infrastructure.Mappers;
+﻿using GbWebApp.Infrastructure.Mappers;
 using Microsoft.AspNetCore.Http;
 using GbWebApp.Domain.Entities;
-using GbWebApp.ViewModels;
 using Newtonsoft.Json;
 using GbWebApp.Domain;
 using System.Linq;
+using GbWebApp.Domain.ViewModels;
+using GbWebApp.Interfaces.Services;
 
 namespace GbWebApp.Infrastructure.Services.InCookies
 {

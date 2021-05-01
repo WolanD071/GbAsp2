@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\GbWebApp.Domain\GbWebApp.Domain.csproj" />
     <ProjectReference Include="..\..\Services\GbWebApp.DAL\GbWebApp.DAL.csproj" />
+    <ProjectReference Include="..\..\Services\GbWebApp.Interfaces\GbWebApp.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

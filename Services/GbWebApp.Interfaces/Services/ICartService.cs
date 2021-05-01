@@ -1,6 +1,6 @@
-﻿using GbWebApp.ViewModels;
+﻿using GbWebApp.Domain.ViewModels;
 
-namespace GbWebApp.Infrastructure.Interfaces
+namespace GbWebApp.Interfaces.Services
 {
     public interface ICartService
     {

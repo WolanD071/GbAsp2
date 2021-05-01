@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using GbWebApp.Domain.Entities;
 using System.Threading.Tasks;
-using GbWebApp.ViewModels;
+using GbWebApp.Domain.Entities;
+using GbWebApp.Domain.ViewModels;
 
-namespace GbWebApp.Infrastructure.Interfaces
+namespace GbWebApp.Interfaces.Services
 {
     public interface IOrderService
     {

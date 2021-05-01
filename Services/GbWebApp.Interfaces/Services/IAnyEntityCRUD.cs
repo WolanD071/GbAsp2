@@ -1,7 +1,7 @@
-﻿using GbWebApp.Domain.Entities.Base.Interfaces;
-using System.Linq;
+﻿using System.Linq;
+using GbWebApp.Domain.Entities.Base.Interfaces;
 
-namespace GbWebApp.Infrastructure.Interfaces
+namespace GbWebApp.Interfaces.Services
 {
     public interface IAnyEntityCRUD<T> where T : class, IEntity
     {

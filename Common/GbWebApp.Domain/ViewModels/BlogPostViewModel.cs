@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GbWebApp.ViewModels
+namespace GbWebApp.Domain.ViewModels
 {
     public record BlogPostViewModel
     {

@@ -1,4 +1,4 @@
-﻿namespace GbWebApp.ViewModels
+﻿namespace GbWebApp.Domain.ViewModels
 {
     public class UserOrderViewModel
     {

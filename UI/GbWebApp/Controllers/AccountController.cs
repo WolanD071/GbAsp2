@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using GbWebApp.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using GbWebApp.Domain.Entities.Identity;
+using GbWebApp.Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace GbWebApp.Controllers

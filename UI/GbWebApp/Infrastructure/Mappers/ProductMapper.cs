@@ -1,6 +1,6 @@
 ﻿using GbWebApp.Domain.Entities;
-using GbWebApp.ViewModels;
 using System.Linq;
+using GbWebApp.Domain.ViewModels;
 
 namespace GbWebApp.Infrastructure.Mappers
 {

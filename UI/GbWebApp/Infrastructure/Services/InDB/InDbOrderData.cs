@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using GbWebApp.ViewModels;
 using GbWebApp.DAL.Context;
 using System.Threading.Tasks;
 using GbWebApp.Domain.Entities;
@@ -8,7 +7,8 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using GbWebApp.Domain.Entities.Identity;
-using GbWebApp.Infrastructure.Interfaces;
+using GbWebApp.Domain.ViewModels;
+using GbWebApp.Interfaces.Services;
 
 namespace GbWebApp.Infrastructure.Services.InDB
 {

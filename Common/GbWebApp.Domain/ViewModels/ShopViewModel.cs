@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GbWebApp.ViewModels
+namespace GbWebApp.Domain.ViewModels
 {
     public record ShopViewModel
     {

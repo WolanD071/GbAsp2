@@ -1,8 +1,8 @@
-﻿using GbWebApp.Domain;
+﻿using System.Linq;
+using GbWebApp.Domain;
 using GbWebApp.Domain.Entities;
-using System.Linq;
 
-namespace GbWebApp.Infrastructure.Interfaces
+namespace GbWebApp.Interfaces.Services
 {
     public interface IProductData : IAnyEntityCRUD<Product>
     {

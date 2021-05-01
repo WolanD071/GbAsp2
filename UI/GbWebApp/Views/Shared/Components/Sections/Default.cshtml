@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SectionViewModel>
+﻿@model IEnumerable<GbWebApp.Domain.ViewModels.SectionViewModel>
 <div class="panel-group category-products" id="accordian">
     <h2>Category</h2>
     @foreach (var parent_section in Model.Where(p => p.TotalProdCnt > 0))

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
 using GbWebApp.Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 
-namespace GbWebApp.ViewModels
+namespace GbWebApp.Domain.ViewModels
 {
     public class EmployeeViewModel : IValidatableObject
     {
