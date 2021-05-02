@@ -10,4 +10,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\GbWebApp.Domain\GbWebApp.Domain.csproj" />
+    <ProjectReference Include="..\GbWebApp.DAL\GbWebApp.DAL.csproj" />
+    <ProjectReference Include="..\GbWebApp.Interfaces\GbWebApp.Interfaces.csproj" />
+    <ProjectReference Include="..\GbWebApp.Services\GbWebApp.Services.csproj" />
+  </ItemGroup>
+
 </Project>
