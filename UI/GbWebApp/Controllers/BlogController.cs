@@ -13,8 +13,8 @@ namespace GbWebApp.Controllers
 
         public BlogController(IAnyEntityCRUD<BlogPost> blogData) { __blogData = blogData; }
 
-        public IActionResult Index() => View(__blogData.Get().Include(a => a.Author));
+        public IActionResult Index() => View(__blogData.Get().AsQueryable().Include(a => a.Author));
 
-        public IActionResult BlogSingle(int id) => View(__blogData.Get().Include(a => a.Author).FirstOrDefault(p => p.Id == id));
+        public IActionResult BlogSingle(int id) => View(__blogData.Get().AsQueryable().Include(a => a.Author).FirstOrDefault(p => p.Id == id));
     }
 }

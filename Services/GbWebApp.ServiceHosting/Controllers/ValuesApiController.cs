@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using GbWebApp.Interfaces;
 
 namespace GbWebApp.ServiceHosting.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(WebApiRoutes.TestWebAPI)]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesApiController : ControllerBase
     {
         private static readonly List<string> __values = Enumerable
             .Range(1, 10).Select(i => $"val-{i:00}").ToList();

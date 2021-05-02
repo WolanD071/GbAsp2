@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace GbWebApp.Clients.Base
 {
-    public abstract class BaseClient
+    public abstract class BaseClient : IDisposable
     {
         private bool _disposed;
 
