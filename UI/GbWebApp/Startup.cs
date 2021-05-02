@@ -1,3 +1,4 @@
+using GbWebApp.Clients.Values;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using GbWebApp.Domain.Entities.Identity;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using GbWebApp.DAL.Context;
 using GbWebApp.Interfaces.Services;
+using GbWebApp.Interfaces.TestAPI;
 using GbWebApp.Services.Data;
 using GbWebApp.Services.Services.InCookies;
 using GbWebApp.Services.Services.InDB;
@@ -58,12 +60,11 @@ namespace GbWebApp
                 opt.SlidingExpiration = true;
             });
 
-            //services.AddTransient<IAnyEntityCRUD<IEntity>, InDbAnyEntity<IEntity>>();     // doesn't work
-            //services.AddTransient<IAnyEntityCRUD<BlogPost>, InDbAnyEntity<BlogPost>>();   // works, but it's only special case...
-            services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));       // works, and this is the general case!
+            services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
             services.AddTransient<IProductData, InDbProductData>();
             services.AddTransient<ICartService, InCookiesCartService>();
             services.AddTransient<IOrderService, InDbOrdertData>();
+            services.AddTransient<IValuesService, ValuesClient>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAuthorization(opt =>

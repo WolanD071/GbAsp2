@@ -1,0 +1,44 @@
+﻿@using GbWebApp.Domain.Entities.Identity
+@model IEnumerable<string>
+@{
+    ViewData["Title"] = "web API get all values ";
+}
+
+<div class="container">
+    <h3>@ViewData["Title"]</h3>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>value</th>
+                <th>##</th>
+                @if (User.IsInRole(Role.Admin))
+                {
+                    <th>###</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var i = 0;
+            }
+            @foreach (var value in Model)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>@value</td>
+                    <td><a asp-action="GetById" asp-route-id="@(i-1)">Details</a></td>
+                    @if (User.IsInRole(Role.Admin))
+                    {
+                        <td><a asp-action="DelById" asp-route-id="@(i-1)" style="color: red;">Delete</a></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (User.IsInRole(Role.Admin))
+    {
+        <a asp-action="NewVal" class="btn btn-primary" style="width: 50%; margin: 10px 25%;">Create new value...</a>
+    }
+</div>

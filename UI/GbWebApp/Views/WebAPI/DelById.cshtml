@@ -1,0 +1,14 @@
+﻿@model string
+@{
+    ViewBag.Title = "web API delete the value ";
+}
+
+<div class="container">
+    <h3>@ViewBag.Title</h3>
+    <hr />
+    <p>ARE YOU SURE wanna delete the &quot;<strong>@ViewBag.Id - @Model</strong>&quot; value?</p>
+    <form asp-action="DeleteValue" method="post" asp-route-id="@ViewBag.Id">
+        <input type="submit" value="Yes, I want!" class="btn btn-danger" style="margin: 10px;" />
+        <a asp-action="Index" class="btn btn-primary" style="margin: 10px;">Back to list</a>
+    </form>
+</div>
