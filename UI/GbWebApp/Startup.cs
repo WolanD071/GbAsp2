@@ -66,7 +66,7 @@ namespace GbWebApp
             services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
             services.AddTransient<IProductData, InDbProductData>();
             services.AddTransient<ICartService, InCookiesCartService>();
-            services.AddTransient<IOrderService, InDbOrdertData>();
+            services.AddTransient<IOrderService, InDbOrderData>();
             services.AddTransient<IValuesService, ValuesClient>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

@@ -22,7 +22,7 @@ namespace GbWebApp.Controllers
         public IActionResult Index(int? BrandId, int? SectionId, int prodPage = 1)
         {
             var filter = new ProductFilter { BrandId = BrandId, SectionId = SectionId };
-            var products = __productData.GetProducts(filter);
+            var products = __productData.GetProducts(filter).FromDTO().AsQueryable();
             return View(new ShopViewModel
             {
                 BrandId = BrandId,
@@ -32,7 +32,7 @@ namespace GbWebApp.Controllers
                 { CurrentPage = prodPage, ItemsPerPage = pageSize, TotalItems = products.Count() }
             });
         }
-        public IActionResult ShopDetails(int id) => View(__productData.GetProductById(id).ToView());
+        public IActionResult ShopDetails(int id) => View(__productData.GetProductById(id).FromDTO().ToView());
         public IActionResult ShopCheckOut() => View();
         public IActionResult ShopCart() => View((__cartData.GetViewModel(), new OrderViewModel { }));
         public IActionResult AddToCart(int id)

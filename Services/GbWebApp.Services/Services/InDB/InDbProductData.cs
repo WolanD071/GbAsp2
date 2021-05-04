@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using GbWebApp.DAL.Context;
 using GbWebApp.Domain;
+using GbWebApp.Domain.DTO;
 using GbWebApp.Domain.Entities;
 using GbWebApp.Interfaces.Services;
+using GbWebApp.Services.Mappers;
 using Microsoft.EntityFrameworkCore;
 
 namespace GbWebApp.Services.Services.InDB
@@ -13,13 +15,13 @@ namespace GbWebApp.Services.Services.InDB
 
         public InDbProductData(GbWebAppDB db) : base(db) { __db = db; }
 
-        public IQueryable<Section> GetSections() => __db.Sections.Include(s => s.Products);
+        public IQueryable<SectionDTO> GetSections() => __db.Sections.Include(s => s.Products).ToDTO().AsQueryable();
 
-        public IQueryable<Brand> GetBrands() => __db.Brands.Include(b => b.Products);
+        public IQueryable<BrandDTO> GetBrands() => __db.Brands.Include(b => b.Products).ToDTO().AsQueryable();
 
-        public IQueryable<Product> GetProducts(ProductFilter Filter)
+        public IQueryable<ProductDTO> GetProducts(ProductFilter Filter)
         {
-            IQueryable<Product> query = __db.Products; // 'var' keyword is not allowed! if we want have ability to make queries
+            IQueryable<Product> query = __db.Products.Include(p => p.Section).Include(p => p.Brand);
 
             if (Filter?.Ids?.Length > 0)
             {
@@ -32,10 +34,13 @@ namespace GbWebApp.Services.Services.InDB
                 if (Filter?.BrandId is { } brand_id)
                     query = query.Where(product => product.BrandId == brand_id).AsQueryable();
             }
-            return query;
+            return query.ToDTO().AsQueryable();
         }
 
-        public Product GetProductById(int id) => __db.Products.
-            Include(p => p.Brand).Include(p => p.Section).FirstOrDefault(p => p.Id == id);
+        public ProductDTO GetProductById(int id) => __db.Products
+            .Include(p => p.Brand)
+            .Include(p => p.Section)
+            .FirstOrDefault(p => p.Id == id)
+            .ToDTO();
     }
 }

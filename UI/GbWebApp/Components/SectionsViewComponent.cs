@@ -30,7 +30,7 @@ namespace GbWebApp.Components
             var sections = _ProductData.GetSections();
             var parent_sections = sections.Where(s => s.ParentId == null);
             var parent_sections_views = parent_sections.Select(s => new SectionViewModel
-                { Id = s.Id, Name = s.Name, Order = s.Order, ProductCount = s.Products.Count() }).ToList();
+                { Id = s.Id, Name = s.Name, Order = s.Order, ProductCount = s.ProductCnt, /*ProductCount = s.Products.Count()*/ }).ToList();
             foreach (var parent_section in parent_sections_views)
             {
                 var childs = sections.Where(s => s.ParentId == parent_section.Id);
@@ -41,7 +41,7 @@ namespace GbWebApp.Components
                         Name = child_section.Name,
                         Order = child_section.Order,
                         Parent = parent_section,
-                        ProductCount = child_section.Products.Count(),
+                        ProductCount = child_section.ProductCnt, /*ProductCount = child_section.Products.Count(),*/
                     });
                 parent_section.ChildSections.Sort(OrderSortMethod);
             }
@@ -56,7 +56,7 @@ namespace GbWebApp.Components
             var sections = _ProductData.GetSections();
             var child_sections = sections.Where(s => s.ParentId != null);
             var child_sections_views = child_sections.Select(s => new SectionViewModel
-               { Id = s.Id, Name = s.Name, Order = s.Order, ProductCount = s.Products.Count() }).ToList();
+               { Id = s.Id, Name = s.Name, Order = s.Order, ProductCount = s.ProductCnt, /*ProductCount = s.Products.Count()*/ }).ToList();
             child_sections_views.Sort(IdSortMethod);
             return child_sections_views;
         }

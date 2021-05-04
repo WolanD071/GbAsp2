@@ -12,12 +12,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GbWebApp.Services.Services.InDB
 {
-    public class InDbOrdertData : IOrderService
+    public class InDbOrderData : IOrderService
     {
         private readonly GbWebAppDB _db;
         private readonly UserManager<User> _userManager;
 
-        public InDbOrdertData(GbWebAppDB db, UserManager<User> UserManager)
+        public InDbOrderData(GbWebAppDB db, UserManager<User> UserManager)
         {
             _db = db;
             _userManager = UserManager;

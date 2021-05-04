@@ -1,17 +1,18 @@
 ﻿using System.Linq;
 using GbWebApp.Domain;
+using GbWebApp.Domain.DTO;
 using GbWebApp.Domain.Entities;
 
 namespace GbWebApp.Interfaces.Services
 {
     public interface IProductData : IAnyEntityCRUD<Product>
     {
-        IQueryable<Section> GetSections();
+        IQueryable<SectionDTO> GetSections();
 
-        IQueryable<Brand> GetBrands();
+        IQueryable<BrandDTO> GetBrands();
 
-        IQueryable<Product> GetProducts(ProductFilter Filter = null);
+        IQueryable<ProductDTO> GetProducts(ProductFilter Filter = null);
 
-        Product GetProductById(int id);
+        ProductDTO GetProductById(int id);
     }
 }

@@ -24,7 +24,7 @@ namespace GbWebApp.Areas.Admin.Controllers
                 return BadRequest();
             if (id == 0)
                 return View(new ProductViewModel { Id = 0 });
-            return __productData.GetProductById(id) is { } product ? View(product.ToView()) : NotFound();
+            return __productData.GetProductById(id) is { } product ? View(product.FromDTO().ToView()) : NotFound();
         }
 
         [HttpPost]

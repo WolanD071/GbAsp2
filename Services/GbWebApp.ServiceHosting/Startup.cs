@@ -48,7 +48,7 @@ namespace GbWebApp.ServiceHosting
 
             services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
             services.AddTransient<IProductData, InDbProductData>();
-            services.AddTransient<IOrderService, InDbOrdertData>();
+            services.AddTransient<IOrderService, InDbOrderData>();
 
             services.AddControllers();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "GbWebApp.ServiceHosting", Version = "v1" }));
