@@ -1,17 +1,23 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+//using System.Linq;
 using GbWebApp.Domain;
+using GbWebApp.Domain.DTO;
 using GbWebApp.Domain.Entities;
 
 namespace GbWebApp.Interfaces.Services
 {
     public interface IProductData : IAnyEntityCRUD<Product>
     {
-        IQueryable<Section> GetSections();
+        IEnumerable<SectionDTO> GetSections();
 
-        IQueryable<Brand> GetBrands();
+        SectionDTO GetSectionById(int id);
 
-        IQueryable<Product> GetProducts(ProductFilter Filter = null);
+        IEnumerable<BrandDTO> GetBrands();
 
-        Product GetProductById(int id);
+        BrandDTO GetBrandById(int id);
+
+        IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null);
+
+        ProductDTO GetProductById(int id);
     }
 }

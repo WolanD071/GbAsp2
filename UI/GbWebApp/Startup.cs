@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using GbWebApp.DAL.Context;
+using GbWebApp.Domain.Entities;
+using GbWebApp.Clients.Employees;
+using GbWebApp.Clients.Orders;
+using GbWebApp.Clients.Products;
 using GbWebApp.Interfaces.Services;
 using GbWebApp.Interfaces.TestAPI;
 using GbWebApp.Services.Data;
@@ -61,9 +65,10 @@ namespace GbWebApp
             });
 
             services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
-            services.AddTransient<IProductData, InDbProductData>();
+            services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
+            services.AddTransient<IProductData, ProductsClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
-            services.AddTransient<IOrderService, InDbOrdertData>();
+            services.AddTransient<IOrderService, OrdersClient>();
             services.AddTransient<IValuesService, ValuesClient>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();

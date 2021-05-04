@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GbWebApp.DAL.Context;
 using GbWebApp.Domain.Entities.Base.Interfaces;
@@ -47,7 +48,7 @@ namespace GbWebApp.Services.Services.InDB
             return true;
         }
 
-        public IQueryable<T> Get() => _tbl;
+        public IEnumerable<T> Get() => _tbl;
 
         public T Get(int id) => _tbl.FirstOrDefault(e => e.Id == id);
 

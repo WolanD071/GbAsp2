@@ -6,6 +6,7 @@ using System.Linq;
 using GbWebApp.Domain.ViewModels;
 using GbWebApp.Interfaces.Services;
 using GbWebApp.Services.Mappers;
+using GbWebApp.Domain.DTO;
 
 namespace GbWebApp.Controllers
 {
@@ -22,7 +23,7 @@ namespace GbWebApp.Controllers
         public IActionResult Index(int? BrandId, int? SectionId, int prodPage = 1)
         {
             var filter = new ProductFilter { BrandId = BrandId, SectionId = SectionId };
-            var products = __productData.GetProducts(filter);
+            var products = __productData.GetProducts(filter).FromDTO();
             return View(new ShopViewModel
             {
                 BrandId = BrandId,
@@ -32,7 +33,7 @@ namespace GbWebApp.Controllers
                 { CurrentPage = prodPage, ItemsPerPage = pageSize, TotalItems = products.Count() }
             });
         }
-        public IActionResult ShopDetails(int id) => View(__productData.GetProductById(id).ToView());
+        public IActionResult ShopDetails(int id) => View(__productData.GetProductById(id).FromDTO().ToView());
         public IActionResult ShopCheckOut() => View();
         public IActionResult ShopCart() => View((__cartData.GetViewModel(), new OrderViewModel { }));
         public IActionResult AddToCart(int id)
@@ -56,12 +57,19 @@ namespace GbWebApp.Controllers
             return RedirectToAction(nameof(ShopCart));
         }
         [Authorize]
-        public async Task<IActionResult> OrderCheckOut(OrderViewModel OrderModel, [FromServices] IOrderService OrderService)
+        public async Task<IActionResult> OrderCheckOut(OrderViewModel orderModel, [FromServices] IOrderService orderService)
         {
             if (!ModelState.IsValid)
-                return View(nameof(ShopCart), (__cartData.GetViewModel(), OrderModel));
-            var order = await OrderService.CreateOrder(
-                User.Identity!.Name, __cartData.GetViewModel(), OrderModel);
+                return View(nameof(ShopCart), (__cartData.GetViewModel(), orderModel));
+
+            var order_model = new OrderModel
+            {
+                Order = orderModel,
+                Items = __cartData.GetViewModel().Items.Select(item => new OrderItemDTO
+                { Id = item.Product.Id, Price = item.Product.Price, Quantity = item.Quantity }).ToList()
+            };
+
+            var order = await orderService.CreateOrder(User.Identity!.Name, order_model);
 
             __cartData.Clear();
             return RedirectToAction(nameof(OrderConfirmed), new { order.Id });

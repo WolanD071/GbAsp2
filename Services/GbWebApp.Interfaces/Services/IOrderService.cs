@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using GbWebApp.Domain.DTO;
 using System.Threading.Tasks;
-using GbWebApp.Domain.Entities;
+//using GbWebApp.Domain.Entities;
+using System.Collections.Generic;
 using GbWebApp.Domain.ViewModels;
 
 namespace GbWebApp.Interfaces.Services
 {
     public interface IOrderService
     {
-        Task<IEnumerable<Order>> GetUserOrders(string UserName);
+        Task<IEnumerable<OrderDTO>> GetUserOrders(string UserName);
 
-        Task<Order> GetOrderById(int id);
+        Task<OrderDTO> GetOrderById(int id);
 
-        Task<Order> CreateOrder(string UserName, CartViewModel Cart, OrderViewModel OrderModel);
+        Task<OrderDTO> CreateOrder(string UserName, OrderModel orderModel);
     }
 }

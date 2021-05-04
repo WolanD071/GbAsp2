@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using GbWebApp.Clients.Base;
 using System.Collections.Generic;
+using GbWebApp.Interfaces;
 using GbWebApp.Interfaces.TestAPI;
 using Microsoft.Extensions.Configuration;
 
@@ -11,7 +12,7 @@ namespace GbWebApp.Clients.Values
 {
     public class ValuesClient : BaseClient, IValuesService
     {
-        public ValuesClient(IConfiguration Configuration) : base(Configuration, "api/values") { }
+        public ValuesClient(IConfiguration Configuration) : base(Configuration, WebApiRoutes.TestWebAPI) { }
 
         public IEnumerable<string> Get()
         {

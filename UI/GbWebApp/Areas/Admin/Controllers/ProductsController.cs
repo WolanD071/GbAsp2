@@ -24,7 +24,7 @@ namespace GbWebApp.Areas.Admin.Controllers
                 return BadRequest();
             if (id == 0)
                 return View(new ProductViewModel { Id = 0 });
-            return __productData.GetProductById(id) is { } product ? View(product.ToView()) : NotFound();
+            return __productData.GetProductById(id) is { } product ? View(product.FromDTO().ToView()) : NotFound();
         }
 
         [HttpPost]
@@ -46,7 +46,7 @@ namespace GbWebApp.Areas.Admin.Controllers
             => View("Edit", new ProductViewModel { Id = 0 });
 
         public IActionResult Index()
-            => View(__productData.GetProducts().Include(p => p.Section).Include(p => p.Brand));
+            => View(__productData.GetProducts().FromDTO()/*.Include(p => p.Section).Include(p => p.Brand)*/);
 
         [HttpPost]
         public IActionResult Remove(int id)

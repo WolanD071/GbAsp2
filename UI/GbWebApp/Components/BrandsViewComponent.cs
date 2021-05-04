@@ -32,7 +32,7 @@ namespace GbWebApp.Components
                {
                    Id = brand.Id,
                    Name = brand.Name,
-                   Count = brand.Products.Count(),
+                   Count = brand.ProductCnt,//Count = brand.Products.Count(),
                });
     }
 }

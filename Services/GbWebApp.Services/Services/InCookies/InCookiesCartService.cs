@@ -52,7 +52,7 @@ namespace GbWebApp.Services.Services.InCookies
         public CartViewModel GetViewModel()
         {
             var products = __productData.GetProducts(new ProductFilter
-            { Ids = Cart.Items.Select(item => item.ProductId).ToArray() });
+            { Ids = Cart.Items.Select(item => item.ProductId).ToArray() }).FromDTO();
             var product_view_models = products.ToView().ToDictionary(p => p.Id);
             return new CartViewModel
             {
