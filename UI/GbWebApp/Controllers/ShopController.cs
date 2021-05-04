@@ -22,7 +22,7 @@ namespace GbWebApp.Controllers
         public IActionResult Index(int? BrandId, int? SectionId, int prodPage = 1)
         {
             var filter = new ProductFilter { BrandId = BrandId, SectionId = SectionId };
-            var products = __productData.GetProducts(filter).FromDTO().AsQueryable();
+            var products = __productData.GetProducts(filter).FromDTO();
             return View(new ShopViewModel
             {
                 BrandId = BrandId,

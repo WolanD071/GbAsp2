@@ -46,7 +46,7 @@ namespace GbWebApp.Areas.Admin.Controllers
             => View("Edit", new ProductViewModel { Id = 0 });
 
         public IActionResult Index()
-            => View(__productData.GetProducts().Include(p => p.Section).Include(p => p.Brand));
+            => View(__productData.GetProducts().FromDTO()/*.Include(p => p.Section).Include(p => p.Brand)*/);
 
         [HttpPost]
         public IActionResult Remove(int id)

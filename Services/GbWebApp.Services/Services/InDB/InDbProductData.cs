@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using GbWebApp.DAL.Context;
 using GbWebApp.Domain;
 using GbWebApp.Domain.DTO;
@@ -15,26 +16,26 @@ namespace GbWebApp.Services.Services.InDB
 
         public InDbProductData(GbWebAppDB db) : base(db) { __db = db; }
 
-        public IQueryable<SectionDTO> GetSections() => __db.Sections.Include(s => s.Products).ToDTO().AsQueryable();
+        public IEnumerable<SectionDTO> GetSections() => __db.Sections.Include(s => s.Products).ToDTO();
 
-        public IQueryable<BrandDTO> GetBrands() => __db.Brands.Include(b => b.Products).ToDTO().AsQueryable();
+        public IEnumerable<BrandDTO> GetBrands() => __db.Brands.Include(b => b.Products).ToDTO();
 
-        public IQueryable<ProductDTO> GetProducts(ProductFilter Filter)
+        public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter)
         {
             IQueryable<Product> query = __db.Products.Include(p => p.Section).Include(p => p.Brand);
 
             if (Filter?.Ids?.Length > 0)
             {
-                query = query.Where(product => Filter.Ids.Contains(product.Id)).AsQueryable();
+                query = query.Where(product => Filter.Ids.Contains(product.Id));
             }
             else
             {
                 if (Filter?.SectionId is { } section_id)
-                    query = query.Where(product => product.SectionId == section_id).AsQueryable();
+                    query = query.Where(product => product.SectionId == section_id);
                 if (Filter?.BrandId is { } brand_id)
-                    query = query.Where(product => product.BrandId == brand_id).AsQueryable();
+                    query = query.Where(product => product.BrandId == brand_id);
             }
-            return query.ToDTO().AsQueryable();
+            return query.AsEnumerable().ToDTO();
         }
 
         public ProductDTO GetProductById(int id) => __db.Products

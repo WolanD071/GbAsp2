@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+//using System.Linq;
 using GbWebApp.Domain;
 using GbWebApp.Domain.DTO;
 using GbWebApp.Domain.Entities;
@@ -7,11 +8,11 @@ namespace GbWebApp.Interfaces.Services
 {
     public interface IProductData : IAnyEntityCRUD<Product>
     {
-        IQueryable<SectionDTO> GetSections();
+        IEnumerable<SectionDTO> GetSections();
 
-        IQueryable<BrandDTO> GetBrands();
+        IEnumerable<BrandDTO> GetBrands();
 
-        IQueryable<ProductDTO> GetProducts(ProductFilter Filter = null);
+        IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null);
 
         ProductDTO GetProductById(int id);
     }

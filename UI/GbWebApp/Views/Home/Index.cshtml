@@ -4,7 +4,7 @@
 
 @{
     ViewBag.Title = "Main ";
-    var products = productData.GetProducts().OrderBy(p => p.Id).Take(3).FromDTO().AsQueryable().ToView();
+    var products = productData.GetProducts().OrderBy(p => p.Id).Take(3).FromDTO().ToView();
 }
 
 <partial name="Partial/_Slider" />
