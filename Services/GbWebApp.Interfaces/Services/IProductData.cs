@@ -10,7 +10,11 @@ namespace GbWebApp.Interfaces.Services
     {
         IEnumerable<SectionDTO> GetSections();
 
+        SectionDTO GetSectionById(int id);
+
         IEnumerable<BrandDTO> GetBrands();
+
+        BrandDTO GetBrandById(int id);
 
         IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null);
 

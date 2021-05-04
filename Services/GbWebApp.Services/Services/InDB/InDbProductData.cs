@@ -18,7 +18,13 @@ namespace GbWebApp.Services.Services.InDB
 
         public IEnumerable<SectionDTO> GetSections() => __db.Sections.Include(s => s.Products).ToDTO();
 
+        public SectionDTO GetSectionById(int id) =>
+            __db.Sections.Include(s => s.Products).FirstOrDefault(s => s.Id == id).ToDTO();
+
         public IEnumerable<BrandDTO> GetBrands() => __db.Brands.Include(b => b.Products).ToDTO();
+
+        public BrandDTO GetBrandById(int id) =>
+            __db.Brands.Include(b => b.Products).FirstOrDefault(b => b.Id == id).ToDTO();
 
         public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter)
         {

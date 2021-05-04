@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using GbWebApp.Domain;
+﻿using GbWebApp.Domain;
 using GbWebApp.Domain.DTO;
 using GbWebApp.Interfaces;
 using GbWebApp.Domain.Entities;
@@ -34,8 +33,14 @@ namespace GbWebApp.ServiceHosting.Controllers
         [HttpGet("sections")]
         public IEnumerable<SectionDTO> GetSections() => _productData.GetSections();
 
+        [HttpGet("sections/{id}")]
+        public SectionDTO GetSectionById(int id) => _productData.GetSectionById(id);
+
         [HttpGet("brands")]
         public IEnumerable<BrandDTO> GetBrands() => _productData.GetBrands();
+
+        [HttpGet("brands/{id}")]
+        public BrandDTO GetBrandById(int id) => _productData.GetBrandById(id);
 
         [HttpPost]
         public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null) => _productData.GetProducts(Filter);
