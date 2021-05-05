@@ -105,16 +105,16 @@ namespace GbWebApp.Services.Data
                 return;
             }
 
-            __logger.LogInformation("employees initailizing ...");
-            using (db.BeginTransaction())
-            {
-                __db.Employees.AddRange(TestData.Employees);
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Employees] ON");
-                __db.SaveChanges();
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Employees] OFF");
-                db.CommitTransaction();
-            }
-            __logger.LogInformation("employees initailization complete!");
+            //__logger.LogInformation("employees initailizing ...");
+            //using (db.BeginTransaction())
+            //{
+            //    __db.Employees.AddRange(TestData.Employees);
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Employees] ON");
+            //    __db.SaveChanges();
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Employees] OFF");
+            //    db.CommitTransaction();
+            //}
+            //__logger.LogInformation("employees initailization complete!");
         }
 
         public void InitProducts()
@@ -127,38 +127,38 @@ namespace GbWebApp.Services.Data
                 return;
             }
 
-            __logger.LogInformation("products initailizing ...");
-            __logger.LogInformation("adding sections ...");
-            using (db.BeginTransaction())
-            {
-                __db.Sections.AddRange(TestData.Sections);
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] ON");
-                __db.SaveChanges();
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] OFF");
-                db.CommitTransaction();
-            }
-            __logger.LogInformation("sections added!");
-            __logger.LogInformation("adding brands ...");
-            using (db.BeginTransaction())
-            {
-                __db.Brands.AddRange(TestData.Brands);
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Brands] ON");
-                __db.SaveChanges();
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Brands] OFF");
-                db.CommitTransaction();
-            }
-            __logger.LogInformation("brands added!");
-            __logger.LogInformation("adding products ...");
-            using (db.BeginTransaction())
-            {
-                __db.Products.AddRange(TestData.Products);
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] ON");
-                __db.SaveChanges();
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] OFF");
-                db.CommitTransaction();
-            }
-            __logger.LogInformation("products added!");
-            __logger.LogInformation("products initailization complete!");
+            //__logger.LogInformation("products initailizing ...");
+            //__logger.LogInformation("adding sections ...");
+            //using (db.BeginTransaction())
+            //{
+            //    __db.Sections.AddRange(TestData.Sections);
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] ON");
+            //    __db.SaveChanges();
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Sections] OFF");
+            //    db.CommitTransaction();
+            //}
+            //__logger.LogInformation("sections added!");
+            //__logger.LogInformation("adding brands ...");
+            //using (db.BeginTransaction())
+            //{
+            //    __db.Brands.AddRange(TestData.Brands);
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Brands] ON");
+            //    __db.SaveChanges();
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Brands] OFF");
+            //    db.CommitTransaction();
+            //}
+            //__logger.LogInformation("brands added!");
+            //__logger.LogInformation("adding products ...");
+            //using (db.BeginTransaction())
+            //{
+            //    __db.Products.AddRange(TestData.Products);
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] ON");
+            //    __db.SaveChanges();
+            //    db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] OFF");
+            //    db.CommitTransaction();
+            //}
+            //__logger.LogInformation("products added!");
+            //__logger.LogInformation("products initailization complete!");
         }
     }
 }
