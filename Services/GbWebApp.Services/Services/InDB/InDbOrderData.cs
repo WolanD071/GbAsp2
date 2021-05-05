@@ -27,12 +27,14 @@ namespace GbWebApp.Services.Services.InDB
         public async Task<IEnumerable<OrderDTO>> GetUserOrders(string UserName) => (await _db.Orders
            .Include(order => order.User)
            .Include(order => order.Items)
+           .ThenInclude(p => p.Product)
            .Where(order => order.User.UserName == UserName)
            .ToArrayAsync()).Select(o => o.ToDTO());
 
         public async Task<OrderDTO> GetOrderById(int id) => (await _db.Orders
            .Include(order => order.User)
            .Include(order => order.Items)
+           .ThenInclude(p => p.Product)
            .FirstOrDefaultAsync(order => order.Id == id)).ToDTO();
 
 
