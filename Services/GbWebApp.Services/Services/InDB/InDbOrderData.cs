@@ -27,14 +27,14 @@ namespace GbWebApp.Services.Services.InDB
         public async Task<IEnumerable<OrderDTO>> GetUserOrders(string UserName) => (await _db.Orders
            .Include(order => order.User)
            .Include(order => order.Items)
-           .ThenInclude(p => p.Product)
+           //.ThenInclude(p => p.Product)
            .Where(order => order.User.UserName == UserName)
            .ToArrayAsync()).Select(o => o.ToDTO());
 
         public async Task<OrderDTO> GetOrderById(int id) => (await _db.Orders
            .Include(order => order.User)
            .Include(order => order.Items)
-           .ThenInclude(p => p.Product)
+           //.ThenInclude(p => p.Product)
            .FirstOrDefaultAsync(order => order.Id == id)).ToDTO();
 
 
@@ -53,7 +53,7 @@ namespace GbWebApp.Services.Services.InDB
                 var product = await _db.Products.FindAsync(item.Id);
                 if (product is null) continue;
 
-                var order_item = new OrderItem { Order = order, Price = product.Price, Quantity = item.Quantity, Product = product };
+                var order_item = new OrderItem { Order = order, Price = product.Price, Quantity = item.Quantity, Product = product/*, ProdId = product.Id*/ };
                 order.Items.Add(order_item);
             }
 

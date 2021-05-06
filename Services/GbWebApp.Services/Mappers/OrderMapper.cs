@@ -9,7 +9,7 @@ namespace GbWebApp.Services.Mappers
         public static OrderItemDTO ToDTO(this OrderItem item) => item is null ? null : new OrderItemDTO
         {
             Id = item.Id,
-            ProductId = item.Product.Id,
+            ProductId = item.ProductId,//?.Id ?? item.ProductId,
             Price = item.Price,
             Quantity = item.Quantity,
         };
@@ -18,6 +18,7 @@ namespace GbWebApp.Services.Mappers
         {
             Id = item.Id,
             Product = new Product { Id = item.ProductId },
+            //ProdId = item.ProductId,
             Price = item.Price,
             Quantity = item.Quantity,
         };
