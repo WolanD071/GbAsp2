@@ -6,7 +6,7 @@ using GbWebApp.Domain.Entities;
 
 namespace GbWebApp.Interfaces.Services
 {
-    public interface IProductData : IAnyEntityCRUD<Product>
+    public interface IProductService : IAnyEntityCRUD<Product>
     {
         IEnumerable<SectionDTO> GetSections();
 

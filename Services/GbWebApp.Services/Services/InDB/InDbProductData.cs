@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GbWebApp.Services.Services.InDB
 {
-    public class InDbProductData : InDbAnyEntity<Product>, IProductData
+    public class InDbProductData : InDbAnyEntity<Product>, IProductService
     {
         readonly GbWebAppDB __db;
 

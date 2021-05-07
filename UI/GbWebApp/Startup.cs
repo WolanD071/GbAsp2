@@ -66,7 +66,7 @@ namespace GbWebApp
 
             services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
             services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
-            services.AddTransient<IProductData, ProductsClient>();
+            services.AddTransient<IProductService, ProductsClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
             services.AddTransient<IOrderService, OrdersClient>();
             services.AddTransient<IValuesService, ValuesClient>();

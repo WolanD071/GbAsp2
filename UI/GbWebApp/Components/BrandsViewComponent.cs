@@ -11,9 +11,9 @@ namespace GbWebApp.Components
     //[ViewComponent(Name = "somename")] // in case when class isn't inherited from ViewComponent
     public class BrandsViewComponent : ViewComponent
     {
-        private readonly IProductData _ProductData;
+        private readonly IProductService _ProductData;
 
-        public BrandsViewComponent(IProductData ProductData) => _ProductData = ProductData;
+        public BrandsViewComponent(IProductService ProductData) => _ProductData = ProductData;
 
         public IViewComponentResult Invoke(bool combo = false, int id = 0)
         {

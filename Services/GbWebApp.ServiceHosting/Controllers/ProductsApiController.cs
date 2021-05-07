@@ -10,11 +10,11 @@ namespace GbWebApp.ServiceHosting.Controllers
 {
     [Route(WebApiRoutes.ProductsAPI)]
     [ApiController]
-    public class ProductsApiController : ControllerBase, IProductData
+    public class ProductsApiController : ControllerBase, IProductService
     {
-        private readonly IProductData _productData;
+        private readonly IProductService _productData;
 
-        public ProductsApiController(IProductData productData) => _productData = productData;
+        public ProductsApiController(IProductService productData) => _productData = productData;
 
         #region methods from IAnyEntityCRUD<>
 

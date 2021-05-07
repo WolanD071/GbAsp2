@@ -47,7 +47,7 @@ namespace GbWebApp.ServiceHosting
             });
 
             services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
-            services.AddTransient<IProductData, InDbProductData>();
+            services.AddTransient<IProductService, InDbProductData>();
             services.AddTransient<IOrderService, InDbOrderData>();
 
             services.AddControllers();
