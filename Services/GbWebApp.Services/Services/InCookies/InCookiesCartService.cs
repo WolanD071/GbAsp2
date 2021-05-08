@@ -12,7 +12,7 @@ namespace GbWebApp.Services.Services.InCookies
     public class InCookiesCartService : ICartService
     {
         private readonly IHttpContextAccessor __httpContextAccessor;
-        private readonly IProductData __productData;
+        private readonly IProductService __productData;
         private readonly string __cartName;
 
         private Cart Cart
@@ -40,7 +40,7 @@ namespace GbWebApp.Services.Services.InCookies
             cookies.Append(__cartName, cookie);
         }
 
-        public InCookiesCartService(IHttpContextAccessor HttpContextAccessor, IProductData ProductData)
+        public InCookiesCartService(IHttpContextAccessor HttpContextAccessor, IProductService ProductData)
         {
             __httpContextAccessor = HttpContextAccessor;
             __productData = ProductData;

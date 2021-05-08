@@ -9,8 +9,7 @@ namespace GbWebApp.Services.Mappers
         public static OrderItemDTO ToDTO(this OrderItem item) => item is null ? null : new OrderItemDTO
         {
             Id = item.Id,
-            ProductId = item.Product?.Id ?? 0, // it needs to change 'OrderItem' entity, introduce 'ProductId' property into them!
-            // otherwise, this property will always be null, because it is the second nesting level in queries from 'Orders' table
+            ProductId = item.ProductId,//?.Id ?? item.ProductId,
             Price = item.Price,
             Quantity = item.Quantity,
         };
@@ -19,6 +18,7 @@ namespace GbWebApp.Services.Mappers
         {
             Id = item.Id,
             Product = new Product { Id = item.ProductId },
+            //ProdId = item.ProductId,
             Price = item.Price,
             Quantity = item.Quantity,
         };

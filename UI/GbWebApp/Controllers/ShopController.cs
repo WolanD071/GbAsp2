@@ -12,10 +12,10 @@ namespace GbWebApp.Controllers
 {
     public class ShopController : Controller
     {
-        readonly IProductData __productData;
+        readonly IProductService __productData;
         readonly ICartService __cartData;
         int pageSize = 9;
-        public ShopController(IProductData productData, ICartService cartData)
+        public ShopController(IProductService productData, ICartService cartData)
         {
             __productData = productData;
             __cartData = cartData;

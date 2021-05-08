@@ -13,9 +13,9 @@ namespace GbWebApp.Areas.Admin.Controllers
     [Area("Admin"), Authorize(Roles = Role.Admin)]
     public class ProductsController : Controller
     {
-        private readonly IProductData __productData;
+        private readonly IProductService __productData;
 
-        public ProductsController(IProductData ProductData)
+        public ProductsController(IProductService ProductData)
             => __productData = ProductData;
 
         public IActionResult Edit(int id)

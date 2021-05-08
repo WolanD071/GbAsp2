@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace GbWebApp.Clients.Products
 {
-    public class ProductsClient : BaseClient, IProductData
+    public class ProductsClient : BaseClient, IProductService
     {
         public ProductsClient(IConfiguration configuration) : base(configuration, WebApiRoutes.ProductsAPI) { }
 

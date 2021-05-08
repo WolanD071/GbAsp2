@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using GbWebApp.DAL.Context;
 using GbWebApp.Domain.Entities;
 using GbWebApp.Clients.Employees;
+using GbWebApp.Clients.Identity;
 using GbWebApp.Clients.Orders;
 using GbWebApp.Clients.Products;
 using GbWebApp.Interfaces.Services;
@@ -29,11 +30,12 @@ namespace GbWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<GbWebAppDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.AddTransient<AppDBInitializer>();
+            //services.AddDbContext<GbWebAppDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+            //services.AddTransient<AppDBInitializer>();
 
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<GbWebAppDB>()
+                //.AddEntityFrameworkStores<GbWebAppDB>()
+                .AddIdentityAPIClients()
                 .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(opt =>
@@ -66,7 +68,7 @@ namespace GbWebApp
 
             services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
             services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
-            services.AddTransient<IProductData, ProductsClient>();
+            services.AddTransient<IProductService, ProductsClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
             services.AddTransient<IOrderService, OrdersClient>();
             services.AddTransient<IValuesService, ValuesClient>();
@@ -76,9 +78,9 @@ namespace GbWebApp
             { opt.AddPolicy(AdminOrStaffPolicy, policy => policy.RequireRole(Role.Admin, Role.Staff)); });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDBInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env/*, AppDBInitializer db*/)
         {
-            db.Initialize();
+            //db.Initialize();
 
             if (env.IsDevelopment())
             {
