@@ -19,7 +19,7 @@
     <dd class="col-sm-8">@Html.DisplayFor(model => model.PhoneNumber)&nbsp;<br />&nbsp;</dd>
     <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TwoFactorEnabled)&nbsp;<br /></dt>
     <dd class="col-sm-8">
-        @*@Html.DisplayFor(model => model.TwoFactorEnabled)&nbsp;<br />&nbsp;*@
-        <input type="checkbox" value="@Model.TwoFactorEnabled" disabled="disabled" />&nbsp;<br />&nbsp;
+        @*<span style="color: red;">broken for unknown reason &#128533;</span>*@
+        <input type="checkbox" value="@(Model?.TwoFactorEnabled ?? false)" disabled="disabled" />&nbsp;<br />&nbsp;
     </dd>
 </dl>

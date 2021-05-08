@@ -54,8 +54,10 @@ namespace GbWebApp.ServiceHosting
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "GbWebApp.ServiceHosting", Version = "v1" }));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDBInitializer db)
         {
+            db.Initialize();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
