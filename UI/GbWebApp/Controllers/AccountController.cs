@@ -12,15 +12,15 @@ namespace GbWebApp.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        readonly UserManager<User> __userManager;
-        readonly SignInManager<User> __signInManager;
-        readonly ILogger<AccountController> __logger;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly ILogger<AccountController> _logger;
 
-        public AccountController(UserManager<User> UserManager, SignInManager<User> SignInManager, ILogger<AccountController> Logger)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, ILogger<AccountController> logger)
         {
-            __userManager = UserManager;
-            __signInManager = SignInManager;
-            __logger = Logger;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
         }
 
         [AllowAnonymous]
@@ -28,31 +28,31 @@ namespace GbWebApp.Controllers
 
         [AllowAnonymous]
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel Model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid) return View(Model);
+            if (!ModelState.IsValid) return View(model);
 
-            __logger.LogInformation($"Registration of {Model.UserName}...");
+            _logger.LogInformation($"Registration of {model.UserName}...");
 
-            var user = new User { UserName = Model.UserName };
-
-            var regResult = await __userManager.CreateAsync(user, Model.Password);
-            if (regResult.Succeeded)
+            using (_logger.BeginScope($"*** REGISTRATION OF '{model.UserName}' SCOPE ***"))
             {
-                __logger.LogInformation($"{Model.UserName} registered successfully!");
-                await __userManager.AddToRoleAsync(user, Role.Users);
-                __logger.LogInformation($"{Model.UserName} has gained the '{Role.Users}' role!");
-                await __signInManager.SignInAsync(user, false);
-                return RedirectToAction("Index", "Home");
+                var user = new User { UserName = model.UserName };
+                var regResult = await _userManager.CreateAsync(user, model.Password);
+                if (regResult.Succeeded)
+                {
+                    _logger.LogInformation($"{model.UserName} registered successfully!");
+                    await _userManager.AddToRoleAsync(user, Role.Users);
+                    _logger.LogInformation($"{model.UserName} has gained the '{Role.Users}' role!");
+                    await _signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                _logger.LogWarning("Some error(s) occurred during the {0} registration! Details: {1}",
+                    model.UserName, string.Join(',', regResult.Errors.Select(e => e.Description)));
+                foreach (var error in regResult.Errors)
+                    ModelState.AddModelError("", error.Description);
             }
 
-            __logger.LogWarning("Some error(s) occured during the {0} registration! Details: {1}",
-                Model.UserName, string.Join(',', regResult.Errors.Select(e => e.Description)));
-
-            foreach (var error in regResult.Errors)
-                ModelState.AddModelError("", error.Description);
-
-            return View(Model);
+            return View(model);
         }
 
         [AllowAnonymous]
@@ -60,14 +60,14 @@ namespace GbWebApp.Controllers
 
         [AllowAnonymous]
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel Model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            if (!ModelState.IsValid) return View(Model);
+            if (!ModelState.IsValid) return View(model);
 
-            var login_result = await __signInManager.PasswordSignInAsync(
-                Model.UserName,
-                Model.Password,
-                Model.RememberMe,
+            var loginResult = await _signInManager.PasswordSignInAsync(
+                model.UserName,
+                model.Password,
+                model.RememberMe,
 #if DEBUG
                 false
 #else 
@@ -75,23 +75,23 @@ namespace GbWebApp.Controllers
 #endif
                 );
 
-            if (login_result.Succeeded)
-                return LocalRedirect(Model.ReturnUrl ?? "/");
+            if (loginResult.Succeeded)
+                return LocalRedirect(model.ReturnUrl ?? "/");
 
             ModelState.AddModelError("", "WRONG UserName and/or Password!");
 
-            return View(Model);
+            return View(model);
         }
 
         public async Task<IActionResult> Logout()
         {
-            await __signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AccessDenied(string ReturnUrl)
+        public IActionResult AccessDenied(string returnUrl)
         {
-            ViewBag.ReturnUrl = ReturnUrl;
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
     }
