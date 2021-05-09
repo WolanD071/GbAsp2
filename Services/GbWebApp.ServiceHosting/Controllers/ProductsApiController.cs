@@ -25,13 +25,16 @@ namespace GbWebApp.ServiceHosting.Controllers
         [NonAction]
         public Product Get(int id) => _productData.Get(id);
 
-        [NonAction]
-        public int Add(Product emp) => _productData.Add(emp);
+        /// <summary> calling an InDbAnyEntity&lt;T&gt; ancestor's method </summary>
+        [HttpPost("newproduct")]
+        public int Add(Product product) => _productData.Add(product);
 
-        [NonAction]
-        public void Update(Product emp) => _productData.Update(emp);
+        /// <summary> calling an InDbAnyEntity&lt;T&gt; ancestor's method </summary>
+        [HttpPut]
+        public void Update(Product product) => _productData.Update(product);
 
-        [NonAction]
+        /// <summary> calling an InDbAnyEntity&lt;T&gt; ancestor's method </summary>
+        [HttpDelete("{id}")]
         public bool Delete(int id) => _productData.Delete(id);
 
         #endregion
