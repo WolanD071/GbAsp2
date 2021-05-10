@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using GbWebApp.Domain.Entities.Base.Interfaces;
 
 namespace GbWebApp.Interfaces.Services
@@ -8,8 +7,8 @@ namespace GbWebApp.Interfaces.Services
     {
         IEnumerable<T> Get();
         T Get(int id);
-        int Add(T emp);
-        void Update(T emp);
+        int Add(T entity);
+        void Update(T entity);
         bool Delete(int id);
     }
 }

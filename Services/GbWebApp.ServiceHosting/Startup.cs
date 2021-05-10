@@ -1,18 +1,20 @@
 using System.IO;
 using System.Linq;
+using GbWebApp.Logger;
 using GbWebApp.DAL.Context;
-using GbWebApp.Domain.Entities.Identity;
-using GbWebApp.Interfaces.Services;
 using GbWebApp.Services.Data;
-using GbWebApp.Services.Services.InDB;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
+using GbWebApp.Interfaces.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using GbWebApp.Services.Services.InDB;
+using GbWebApp.Domain.Entities.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GbWebApp.ServiceHosting
 {
@@ -30,7 +32,6 @@ namespace GbWebApp.ServiceHosting
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<GbWebAppDB>()
                 .AddDefaultTokenProviders();
-
             services.Configure<IdentityOptions>(opt =>
             {
 #if DEBUG
@@ -56,7 +57,6 @@ namespace GbWebApp.ServiceHosting
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "GbWebApp.ServiceHosting", Version = "v1"});
-
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
                 const string hosting_xml = "GbWebApp.ServiceHosting.xml";
@@ -75,16 +75,15 @@ namespace GbWebApp.ServiceHosting
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDBInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDBInitializer db, ILoggerFactory logger)
         {
+            logger.AddLog4Net();
             db.Initialize();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GbWebApp.ServiceHosting v1"));
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", "GbWebApp.ServiceHosting v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GbWebApp.ServiceHosting v1"));
             }
             app.UseHttpsRedirection();
             app.UseRouting();

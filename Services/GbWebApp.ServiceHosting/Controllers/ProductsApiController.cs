@@ -19,14 +19,22 @@ namespace GbWebApp.ServiceHosting.Controllers
 
         #region methods from IAnyEntityCRUD<>
 
+        [NonAction]
         public IEnumerable<Product> Get() => _productData.Get();
 
+        [NonAction]
         public Product Get(int id) => _productData.Get(id);
 
-        public int Add(Product emp) => _productData.Add(emp);
+        /// <summary> calling an InDbAnyEntity&lt;T&gt; ancestor's method </summary>
+        [HttpPost("newproduct")]
+        public int Add(Product product) => _productData.Add(product);
 
-        public void Update(Product emp) => _productData.Update(emp);
+        /// <summary> calling an InDbAnyEntity&lt;T&gt; ancestor's method </summary>
+        [HttpPut]
+        public void Update(Product product) => _productData.Update(product);
 
+        /// <summary> calling an InDbAnyEntity&lt;T&gt; ancestor's method </summary>
+        [HttpDelete("{id}")]
         public bool Delete(int id) => _productData.Delete(id);
 
         #endregion

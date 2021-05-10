@@ -7,14 +7,20 @@ using GbWebApp.Domain.Entities;
 using GbWebApp.Interfaces.Services;
 using GbWebApp.Services.Mappers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace GbWebApp.Services.Services.InDB
 {
     public class InDbProductData : InDbAnyEntity<Product>, IProductService
     {
-        readonly GbWebAppDB __db;
+        private readonly GbWebAppDB __db;
+        private readonly ILogger _logger;
 
-        public InDbProductData(GbWebAppDB db) : base(db) { __db = db; }
+        public InDbProductData(GbWebAppDB db, ILogger<InDbProductData> logger) : base(db, logger)
+        {
+            __db = db;
+            _logger = logger;
+        }
 
         public IEnumerable<SectionDTO> GetSections() => __db.Sections.Include(s => s.Products).ToDTO();
 
@@ -31,9 +37,7 @@ namespace GbWebApp.Services.Services.InDB
             IQueryable<Product> query = __db.Products.Include(p => p.Section).Include(p => p.Brand);
 
             if (Filter?.Ids?.Length > 0)
-            {
                 query = query.Where(product => Filter.Ids.Contains(product.Id));
-            }
             else
             {
                 if (Filter?.SectionId is { } section_id)

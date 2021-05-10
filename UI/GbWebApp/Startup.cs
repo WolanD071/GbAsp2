@@ -1,23 +1,23 @@
-using GbWebApp.Clients.Values;
 using Microsoft.Extensions.DependencyInjection;
+using GbWebApp.Services.Services.InCookies;
+using GbWebApp.Infrastructure.Middleware;
 using Microsoft.Extensions.Configuration;
 using GbWebApp.Domain.Entities.Identity;
-using Microsoft.EntityFrameworkCore;
+//using GbWebApp.Services.Services.InDB;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using GbWebApp.DAL.Context;
-using GbWebApp.Domain.Entities;
+using GbWebApp.Interfaces.Services;
+using Microsoft.Extensions.Logging;
+using GbWebApp.Interfaces.TestAPI;
 using GbWebApp.Clients.Employees;
 using GbWebApp.Clients.Identity;
-using GbWebApp.Clients.Orders;
 using GbWebApp.Clients.Products;
-using GbWebApp.Interfaces.Services;
-using GbWebApp.Interfaces.TestAPI;
-using GbWebApp.Services.Data;
-using GbWebApp.Services.Services.InCookies;
-using GbWebApp.Services.Services.InDB;
+using GbWebApp.Domain.Entities;
+using GbWebApp.Clients.Orders;
+using GbWebApp.Clients.Values;
+using GbWebApp.Logger;
 
 namespace GbWebApp
 {
@@ -30,11 +30,7 @@ namespace GbWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<GbWebAppDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
-            //services.AddTransient<AppDBInitializer>();
-
             services.AddIdentity<User, Role>()
-                //.AddEntityFrameworkStores<GbWebAppDB>()
                 .AddIdentityAPIClients()
                 .AddDefaultTokenProviders();
 
@@ -66,7 +62,7 @@ namespace GbWebApp
                 opt.SlidingExpiration = true;
             });
 
-            services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
+            //services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
             services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
             services.AddTransient<IProductService, ProductsClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
@@ -78,9 +74,9 @@ namespace GbWebApp
             { opt.AddPolicy(AdminOrStaffPolicy, policy => policy.RequireRole(Role.Admin, Role.Staff)); });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env/*, AppDBInitializer db*/)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logger)
         {
-            //db.Initialize();
+            logger.AddLog4Net();
 
             if (env.IsDevelopment())
             {
@@ -94,6 +90,8 @@ namespace GbWebApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<MiddleErrorHandler>();
 
             app.UseEndpoints(endpoints =>
             {

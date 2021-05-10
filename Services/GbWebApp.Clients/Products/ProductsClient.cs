@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net.Http;
 using GbWebApp.Domain;
 using GbWebApp.Interfaces;
@@ -9,12 +8,15 @@ using GbWebApp.Domain.Entities;
 using System.Collections.Generic;
 using GbWebApp.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace GbWebApp.Clients.Products
 {
     public class ProductsClient : BaseClient, IProductService
     {
-        public ProductsClient(IConfiguration configuration) : base(configuration, WebApiRoutes.ProductsAPI) { }
+        private readonly ILogger<ProductsClient> _logger;
+
+        public ProductsClient(IConfiguration cfg, ILogger<ProductsClient> logger) : base(cfg, WebApiRoutes.ProductsAPI) => _logger = logger;
 
         #region methods from IAnyEntityCRUD<>
 
@@ -22,11 +24,37 @@ namespace GbWebApp.Clients.Products
 
         public Product Get(int id) => throw new NotImplementedException();
 
-        public int Add(Product emp) => throw new NotImplementedException();
+        public int Add(Product product)
+        {
+            _logger.LogInformation("Creating new product...");
+            using (_logger.BeginScope("*** CREATING PRODUCT SCOPE ***"))
+            {
+                var result = Post($"{Address}/newproduct", product).Content.ReadAsAsync<int>().Result;
+                _logger.LogInformation($"...completed successfully! id={result}");
+                return result;
+            }
+        }
 
-        public void Update(Product emp) => throw new NotImplementedException();
+        public void Update(Product product)
+        {
+            _logger.LogInformation($"Updating the product with id={product.Id}...");
+            using (_logger.BeginScope("*** UPDATING PRODUCT SCOPE ***"))
+            {
+                Put(Address, product);
+                _logger.LogInformation("...completed successfully!");
+            }
+        }
 
-        public bool Delete(int id) => throw new NotImplementedException();
+        public bool Delete(int id)
+        {
+            _logger.LogInformation($"Deleting the product with id={id}...");
+            using (_logger.BeginScope("*** DELETING PRODUCT SCOPE ***"))
+            {
+                var result = Delete($"{Address}/{id}").IsSuccessStatusCode;
+                _logger.LogInformation("{0}", result ? "...completed successfully!" : "product not found!");
+                return result;
+            }
+        }
 
         #endregion
 
@@ -38,8 +66,8 @@ namespace GbWebApp.Clients.Products
 
         public BrandDTO GetBrandById(int id) => Get<BrandDTO>($"{Address}/brands/{id}");
 
-        public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null) =>
-            Post(Address, Filter ?? new ProductFilter()).Content.ReadAsAsync<IEnumerable<ProductDTO>>().Result;
+        public IEnumerable<ProductDTO> GetProducts(ProductFilter filter = null) =>
+            Post(Address, filter ?? new ProductFilter()).Content.ReadAsAsync<IEnumerable<ProductDTO>>().Result;
 
         public ProductDTO GetProductById(int id) => Get<ProductDTO>($"{Address}/{id}");
     }
