@@ -1,3 +1,7 @@
+//using System;
+using Serilog;
+//using Serilog.Events;
+//using Serilog.Formatting.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 //using Microsoft.Extensions.Logging;
@@ -30,7 +34,17 @@ namespace GbWebApp
                 //    .AddFilter /*<ConsoleLoggerProvider>*/("Microsoft.Hosting", LogLevel.Error)
                 //)
                 .ConfigureWebHostDefaults(host =>
-                    host.UseStartup<Startup>());
+                    host.UseStartup<Startup>())
+                .UseSerilog((host, log) => log.ReadFrom.Configuration(host.Configuration)   // log4net will NOT work together with serilog
+                //    .MinimumLevel.Debug()
+                //    .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                //    .Enrich.FromLogContext()
+                //    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss.fff} {Level:u3}]{SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}")
+                //    .WriteTo.RollingFile($@".\Log\GbWebApp-[{DateTime.Now:yyyy-MM-ddTHH-mm-ss}].log")
+                //    .WriteTo.File(new JsonFormatter(",", true), $@".\Log\GbWebApp-[{DateTime.Now:yyyy-MM-ddTHH-mm-ss}].log.json")
+                //    //.WriteTo.Seq("http://localhost:5341")
+                )
+            ;
         }
     }
 }
