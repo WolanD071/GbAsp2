@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\GbWebApp.Domain\GbWebApp.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\GbWebApp.Logger\GbWebApp.Logger.csproj" />
     <ProjectReference Include="..\GbWebApp.DAL\GbWebApp.DAL.csproj" />
     <ProjectReference Include="..\GbWebApp.Interfaces\GbWebApp.Interfaces.csproj" />
     <ProjectReference Include="..\GbWebApp.Services\GbWebApp.Services.csproj" />

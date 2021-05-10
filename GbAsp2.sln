@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GbWebApp.Interfaces", "Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GbWebApp.Services", "Services\GbWebApp.Services\GbWebApp.Services.csproj", "{2807917F-2B70-422F-9103-855ACB13448A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GbWebApp.ServiceHosting", "Services\GbWebApp.ServiceHosting\GbWebApp.ServiceHosting.csproj", "{38FDFAA4-4A0B-4B99-B970-D00AC441C43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GbWebApp.ServiceHosting", "Services\GbWebApp.ServiceHosting\GbWebApp.ServiceHosting.csproj", "{38FDFAA4-4A0B-4B99-B970-D00AC441C43E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GbWebApp.Clients", "Services\GbWebApp.Clients\GbWebApp.Clients.csproj", "{569680CC-84DD-404F-AD5C-90D4A80313EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GbWebApp.Clients", "Services\GbWebApp.Clients\GbWebApp.Clients.csproj", "{569680CC-84DD-404F-AD5C-90D4A80313EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GbWebApp.Logger", "Common\GbWebApp.Logger\GbWebApp.Logger.csproj", "{0687B6AE-B678-434F-A5CD-433544DF87F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{569680CC-84DD-404F-AD5C-90D4A80313EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{569680CC-84DD-404F-AD5C-90D4A80313EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{569680CC-84DD-404F-AD5C-90D4A80313EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0687B6AE-B678-434F-A5CD-433544DF87F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0687B6AE-B678-434F-A5CD-433544DF87F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0687B6AE-B678-434F-A5CD-433544DF87F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0687B6AE-B678-434F-A5CD-433544DF87F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{2807917F-2B70-422F-9103-855ACB13448A} = {52C8CCD4-C112-44F9-B36C-7F74C3B935DD}
 		{38FDFAA4-4A0B-4B99-B970-D00AC441C43E} = {52C8CCD4-C112-44F9-B36C-7F74C3B935DD}
 		{569680CC-84DD-404F-AD5C-90D4A80313EB} = {52C8CCD4-C112-44F9-B36C-7F74C3B935DD}
+		{0687B6AE-B678-434F-A5CD-433544DF87F0} = {18461E5A-1239-4989-95C7-88286FCA6E10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FB38A22-85FF-415D-9199-682C0986E2B3}
