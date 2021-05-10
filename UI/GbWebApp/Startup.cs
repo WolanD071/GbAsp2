@@ -1,8 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using GbWebApp.Services.Services.InCookies;
+using GbWebApp.Infrastructure.Middleware;
 using Microsoft.Extensions.Configuration;
 using GbWebApp.Domain.Entities.Identity;
-using GbWebApp.Services.Services.InDB;
+//using GbWebApp.Services.Services.InDB;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,11 +30,7 @@ namespace GbWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<GbWebAppDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
-            //services.AddTransient<AppDBInitializer>();
-
             services.AddIdentity<User, Role>()
-                //.AddEntityFrameworkStores<GbWebAppDB>()
                 .AddIdentityAPIClients()
                 .AddDefaultTokenProviders();
 
@@ -65,7 +62,7 @@ namespace GbWebApp
                 opt.SlidingExpiration = true;
             });
 
-            services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
+            //services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
             services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
             services.AddTransient<IProductService, ProductsClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
@@ -93,6 +90,8 @@ namespace GbWebApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<MiddleErrorHandler>();
 
             app.UseEndpoints(endpoints =>
             {
