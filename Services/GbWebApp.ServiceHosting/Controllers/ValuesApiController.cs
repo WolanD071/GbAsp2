@@ -27,7 +27,7 @@ namespace GbWebApp.ServiceHosting.Controllers
 
         [HttpPost]                 // post -> http://localhost:5000/api/values
         [HttpPost("add")]   // post -> http://localhost:5000/api/values/add
-        public ActionResult Post(/*[FromBody] ??? M$ ???*/ string value)
+        public ActionResult Post([FromBody] string value)   // without [FromBody] attribute 'value' will be null
         {
             __values.Add(value);
             return CreatedAtAction(nameof(Get), new { id = __values.Count - 1 }); // http://localhost:5000/api/values/10

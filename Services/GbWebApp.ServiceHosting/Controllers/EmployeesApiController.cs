@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GbWebApp.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using GbWebApp.Domain.Entities;
 using System.Collections.Generic;
 using GbWebApp.Interfaces.Services;
@@ -6,7 +7,7 @@ using GbWebApp.Interfaces.Services;
 namespace GbWebApp.ServiceHosting.Controllers
 {
     /// <summary> employees management </summary>
-    [Route("api/employees")]
+    [Route(WebApiRoutes.EmployeesAPI)]
     [ApiController]
     public class EmployeesApiController : ControllerBase, IAnyEntityCRUD<Employee>
     {
