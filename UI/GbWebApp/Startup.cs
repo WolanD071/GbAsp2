@@ -3,7 +3,6 @@ using GbWebApp.Services.Services.InCookies;
 using GbWebApp.Infrastructure.Middleware;
 using Microsoft.Extensions.Configuration;
 using GbWebApp.Domain.Entities.Identity;
-//using GbWebApp.Services.Services.InDB;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using GbWebApp.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using GbWebApp.Interfaces.TestAPI;
+using GbWebApp.Services.Services;
 using GbWebApp.Clients.Employees;
 using GbWebApp.Clients.Identity;
 using GbWebApp.Clients.Products;
@@ -62,12 +62,12 @@ namespace GbWebApp
                 opt.SlidingExpiration = true;
             });
 
-            //services.AddTransient(typeof(IAnyEntityCRUD<>), typeof(InDbAnyEntity<>));
             services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
+            services.AddTransient<ICartCookie, InCookiesCartCookie>();
             services.AddTransient<IProductService, ProductsClient>();
-            services.AddTransient<ICartService, InCookiesCartService>();
-            services.AddTransient<IOrderService, OrdersClient>();
             services.AddTransient<IValuesService, ValuesClient>();
+            services.AddTransient<IOrderService, OrdersClient>();
+            services.AddTransient<ICartService, CartService>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAuthorization(opt =>
