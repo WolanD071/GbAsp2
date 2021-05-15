@@ -1,27 +1,38 @@
 ﻿<div class="mainmenu pull-left">
     <ul class="nav navbar-nav collapse navbar-collapse">
-        <li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+        <li><a asp-controller="Home" asp-action="Index" class="@IsActiveTag("Home")">Home</a></li>
         <li class="dropdown">
-            <a href="#">Shop<i class="fa fa-angle-down"></i></a>
+            <a @IsActiveHref("Shop") href="#">Shop<i class="fa fa-angle-down"></i></a>
             <ul role="menu" class="sub-menu">
-                <li><a asp-controller="Shop" asp-action="Index">Products</a></li>
+                <li><a asp-controller="Shop" asp-action="Index" class="@IsActiveTag("Shop")">Products</a></li>
                 @*<li><a asp-controller="Shop" asp-action="ShopDetails">Product Details</a></li>*@
-                <li><a asp-controller="Shop" asp-action="ShopCheckOut">Checkout</a></li>
-                <li><a asp-controller="Shop" asp-action="ShopCart">Cart</a></li>
-                <li><a asp-controller="Shop" asp-action="ShopLogin">Login</a></li>
+                <li><a asp-controller="Shop" asp-action="ShopCheckOut" class="@IsActiveTag("Shop", "ShopCheckOut")">Checkout</a></li>
+                <li><a asp-controller="Shop" asp-action="ShopCart" class="@IsActiveTag("Shop", "ShopCart")">Cart</a></li>
+                <li><a asp-controller="Shop" asp-action="ShopLogin" class="@IsActiveTag("Shop", "ShopLogin")">Login</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#">Blog<i class="fa fa-angle-down"></i></a>
+            <a @IsActiveHref("Blog") href="#">Blog<i class="fa fa-angle-down"></i></a>
             <ul role="menu" class="sub-menu">
-                <li><a asp-controller="Blog" asp-action="Index">Blog List</a></li>
+                <li><a asp-controller="Blog" asp-action="Index" class="@IsActiveTag("Blog")">Blog List</a></li>
                 @*<li><a asp-controller="Blog" asp-action="BlogSingle">Blog Single</a></li>*@
             </ul>
         </li>
         <li><a asp-controller="_404" asp-action="Index">404 (Ctrl)</a></li>
         <li><a asp-controller="Home" asp-action="_404">404 (View)</a></li>
-        <li><a asp-controller="Contacts" asp-action="Index">Contact Us</a></li>
-        <li><a asp-controller="Employees" asp-action="Index">Our Stuff</a></li>
-        <li><a asp-controller="WebAPI" asp-action="Index">web API Test</a></li>
+        <li><a asp-controller="Contacts" asp-action="Index" class="@IsActiveTag("Contacts")">Contact Us</a></li>
+        <li><a asp-controller="Employees" asp-action="Index" class="@IsActiveTag("Employees")">Our Stuff</a></li>
+        <li><a asp-controller="WebAPI" asp-action="Index" class="@IsActiveTag("WebAPI")">web API Test</a></li>
     </ul>
 </div>
+
+@functions
+{
+    string IsActiveHref(string controller, string action = "Index") =>
+        Equals(controller, ViewContext.RouteData.Values["Controller"]) && Equals(action, ViewContext.RouteData.Values["Action"])
+            ? "class=active" : null; // don't use exceed quotes around value of attr
+
+    string IsActiveTag(string controller, string action = "Index") =>
+        Equals(controller, ViewContext.RouteData.Values["Controller"]) && Equals(action, ViewContext.RouteData.Values["Action"])
+            ? "active" : null;
+}
