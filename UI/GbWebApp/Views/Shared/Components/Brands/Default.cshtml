@@ -1,11 +1,13 @@
-﻿@model IEnumerable<GbWebApp.Domain.ViewModels.BrandsViewModel>
+﻿@model GbWebApp.ViewModels.BrandsViewModelId
 <div class="brands_products">
     <h2>Brands</h2>
     <div class="brands-name">
         <ul class="nav nav-pills nav-stacked">
-            @foreach (var brand in Model.Where(b => b.Count > 0))
+            @foreach (var brand in Model.Brands.Where(b => b.Count > 0))
             {
-                <li><a asp-controller="Shop" asp-action="Index" asp-route-BrandId="@brand.Id"> <span class="pull-right">(@brand.Count)</span>@brand.Name</a></li>
+                <li @(brand.Id == Model.BrandId ? "class=active" : null)>
+                    <a asp-controller="Shop" asp-action="Index" asp-route-BrandId="@brand.Id"> <span class="pull-right">(@brand.Count)</span>@brand.Name</a>
+                </li>
             }
         </ul>
     </div>

@@ -1,32 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GbWebApp.Domain.ViewModels;
 using GbWebApp.Interfaces.Services;
+using GbWebApp.ViewModels;
 
 namespace GbWebApp.Components
 {
-    //[ViewComponent(Name = "somename")] // in case when class isn't inherited from ViewComponent
     public class BrandsViewComponent : ViewComponent
     {
-        private readonly IProductService _ProductData;
+        private readonly IProductService _productData;
 
-        public BrandsViewComponent(IProductService ProductData) => _ProductData = ProductData;
+        public BrandsViewComponent(IProductService productData) => _productData = productData;
 
-        public IViewComponentResult Invoke(bool combo = false, int id = 0)
+        public IViewComponentResult Invoke(string brandId, bool combo = false, int id = 0)  // params are for admin dashboard
         {
             if (combo)
                 if (id != 0)
                     return View("ComboId", (id, GetBrands()));
                 else
                     return View("ComboNew", GetBrands());
-            return View(GetBrands());
+            return View(new BrandsViewModelId { Brands = GetBrands(), BrandId = int.TryParse(brandId, out var bid) ? bid : (int?)null });
         }
 
         IEnumerable<BrandsViewModel> GetBrands() =>
-            _ProductData.GetBrands()
+            _productData.GetBrands()
                .OrderBy(brand => brand.Order)
                .Select(brand => new BrandsViewModel
                {
