@@ -340,5 +340,7 @@ ASALocalRun/
 healthchecksdb
 
 /Services/GbWebApp.DAL/Migrations
+**/wwwroot/css/site.*
+**/wwwroot/js/site.*
 /Services/GbWebApp.ServiceHosting/GbWebApp.ServiceHosting.xml
 /Common/GbWebApp.Domain/GbWebApp.Domain.xml
