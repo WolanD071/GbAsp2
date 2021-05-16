@@ -43,13 +43,13 @@ else
             <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
                 <select required asp-for="BrandId" class="form-control">
-                    <vc:brands brand-id="" combo="true" id="Model.BrandId"></vc:brands>
+                    <vc:brands brand-id="" combo="true" id="Model.BrandId"></vc:brands> @*it is required to pass all the parameters! otherwise tag <vc> will not work*@
                 </select>
                 <span asp-validation-for="BrandId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Section" class="control-label"></label>
-                <vc:sections section-id="" combo="true" id="Model.SectionId"></vc:sections>
+                <vc:sections section-id="" combo="true" id="Model.SectionId"></vc:sections> @*it is required to pass all the parameters! otherwise tag <vc> will not work*@
                 <span asp-validation-for="SectionId" class="text-danger"></span>
             </div>
             <div class="form-group">

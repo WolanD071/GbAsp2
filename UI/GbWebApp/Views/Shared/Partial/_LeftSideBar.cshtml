@@ -1,6 +1,8 @@
 ﻿<div class="left-sidebar">
-    @await Component.InvokeAsync("Brands", new { brandId = Context.Request.Query["BrandId"].ToString() })
-    @await Component.InvokeAsync("Sections", new { sectionId = Context.Request.Query["SectionId"].ToString() })
+    @await Component.InvokeAsync("Brands", new { brandId = Context.Request.Query["BrandId"].ToString() }) @*it is allowed to pass only desired parameters*@
+    @await Component.InvokeAsync("Sections", new { sectionId = Context.Request.Query["SectionId"].ToString() }) @*it is allowed to pass only desired parameters*@
+    @*<vc:brands ... />@*it is required to pass all the parameters! otherwise tag <vc> will not work*@
+    @*<vc:sections ... />@*it is required to pass all the parameters! otherwise tag <vc> will not work*@
     <div class="price-range">
         <h2>Price Range</h2>
         <div class="well text-center">
