@@ -1,6 +1,7 @@
 ﻿@{ ViewBag.Title = "web API new... "; }
 
 <div class="container">
+    <vc:bread-crumbs display-action-name="@ViewBag.Title.ToString().Remove(0, 7)" />
     <h4>Create New Value</h4>
     <br />
     <div class="row">

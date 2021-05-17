@@ -1,6 +1,7 @@
 ﻿@{ ViewBag.Title = "Order is done"; }
 
 <div class="container">
+    <vc:bread-crumbs display-action-name="Congrats - @ViewBag.Title!" />
     <h3>@ViewBag.Title</h3>
     <br />
     <p>Order #@ViewBag.OrderId has been formed and sent for processing!</p>

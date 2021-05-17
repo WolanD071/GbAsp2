@@ -3,6 +3,7 @@
 @{ ViewBag.Title = "Delete!!! "; }
 
 <div class="container">
+    <vc:bread-crumbs display-action-name="WARNING - @ViewBag.Title" />
     <h3>Are you sure you want to delete @(Model.FirstName) @(Model.LastName)?</h3>
     <div>
         <dl class="row">

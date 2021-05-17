@@ -1536,8 +1536,8 @@ h2.title {
   padding: 3px 7px;
 }
 
-.breadcrumbs .breadcrumb li a:after {
-  content:"";
+/*.breadcrumbs .breadcrumb li a:after {
+  content:" >";
   height:auto;
   width: auto;
   border-width: 8px;
@@ -1546,11 +1546,13 @@ h2.title {
   position: absolute;
   top: 11px;
   left:48px;
-
-}
+}*/
 
 .breadcrumbs .breadcrumb > li + li:before {
-  content: " ";
+	font-weight: bold;
+    background: #fff;
+    content : " > ";
+    color: #fe980f;
 }
 
 #cart_items .cart_info {
