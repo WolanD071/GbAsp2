@@ -5,6 +5,7 @@
 }
 
 <div class="container">
+    <vc:bread-crumbs display-action-name="" />
     <h3>@ViewData["Title"]</h3>
     <hr />
     <table class="table">
@@ -28,10 +29,10 @@
                 <tr>
                     <td>@(i++)</td>
                     <td>@value</td>
-                    <td><a asp-action="GetById" asp-route-id="@(i-1)">Details</a></td>
+                    <td><a asp-action="GetById" asp-route-id="@(i - 1)">Details</a></td>
                     @if (User.IsInRole(Role.Admin))
                     {
-                        <td><a asp-action="DelById" asp-route-id="@(i-1)" style="color: red;">Delete</a></td>
+                        <td><a asp-action="DelById" asp-route-id="@(i - 1)" style="color: red;">Delete</a></td>
                     }
                 </tr>
             }

@@ -13,55 +13,56 @@
 }
 
 <div class="container">
+    <vc:bread-crumbs display-action-name="" />
     <h4>list of employees...</h4>
-    <br />
+    <br/>
     <table class="table">
         <thead>
-            <tr>
-                <th>First name</th>
-                <th>Patronymic</th>
-                <th>Last name</th>
-                @if (User.IsInRole(Role.Admin))
-                {
-                    <th></th>
-                    <th></th>
-                }
-            </tr>
+        <tr>
+            <th>First name</th>
+            <th>Patronymic</th>
+            <th>Last name</th>
+            @if (User.IsInRole(Role.Admin))
+            {
+                <th></th>
+                <th></th>
+            }
+        </tr>
         </thead>
         <tbody>
-            @if (Model != null)
+        @if (Model != null)
+        {
+            @foreach (var emp in Model)
             {
-                @foreach (var emp in Model)
+                @if (emp != null)
                 {
-                    @if (emp != null)
-                    {
-                        <tr>
-                            <td>@Html.ActionLink($"{emp.FirstName}", "Emp_Details", new { Id = emp.Id })</td>
-                            <td>@Html.ActionLink($"{emp.Patronymic}", "Emp_Details", new { Id = emp.Id })</td>
-                            <td>@Html.ActionLink($"{emp.LastName}", "Emp_Details", new { Id = emp.Id })</td>
-                            @if (User.IsInRole(Role.Admin))
-                            {
-                                <td>@Html.ActionLink("Edit", "Emp_Edit", new { Id = emp.Id })</td>
-                                <td><a asp-action="Emp_Del" asp-route-id="@emp.Id">Delete</a></td>
-                                <td>
-                                    <form asp-action="Emp_Del_BadGuy" asp-route-id="@emp.Id">
-                                        <input type="submit" class="delconfirm" style="color: red;" value="Fast Delete" />
-                                    </form>
-                                </td>
-                            }
-                        </tr>
-                    }
+                    <tr>
+                        <td>@Html.ActionLink($"{emp.FirstName}", "Emp_Details", new {Id = emp.Id})</td>
+                        <td>@Html.ActionLink($"{emp.Patronymic}", "Emp_Details", new {Id = emp.Id})</td>
+                        <td>@Html.ActionLink($"{emp.LastName}", "Emp_Details", new {Id = emp.Id})</td>
+                        @if (User.IsInRole(Role.Admin))
+                        {
+                            <td>@Html.ActionLink("Edit", "Emp_Edit", new {Id = emp.Id})</td>
+                            <td><a asp-action="Emp_Del" asp-route-id="@emp.Id">Delete</a></td>
+                            <td>
+                                <form asp-action="Emp_Del_BadGuy" asp-route-id="@emp.Id">
+                                    <input type="submit" class="delconfirm" style="color: red;" value="Fast Delete"/>
+                                </form>
+                            </td>
+                        }
+                    </tr>
                 }
             }
-            else
-            {
-                <tr>
-                    <td colspan="7">no data passed</td>
-                </tr>
-            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7">no data passed</td>
+            </tr>
+        }
         </tbody>
     </table>
-    <br />
+    <br/>
     @if (User.IsInRole(Role.Admin))
     {
         <a asp-action="Emp_New" class="btn btn-primary" style="width: 50%; margin: 10px 25%;">Create new employee...</a>

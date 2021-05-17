@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using GbWebApp.Interfaces.TestAPI;
 using GbWebApp.Services.Services;
 using GbWebApp.Clients.Employees;
+using GbWebApp.Clients.BlogPosts;
 using GbWebApp.Clients.Identity;
 using GbWebApp.Clients.Products;
 using GbWebApp.Domain.Entities;
@@ -63,6 +64,7 @@ namespace GbWebApp
             });
 
             services.AddTransient<IAnyEntityCRUD<Employee>, EmployeesClient>();
+            services.AddTransient<IAnyEntityCRUD<BlogPost>, BlogPostsClient>();
             services.AddTransient<ICartCookie, InCookiesCartCookie>();
             services.AddTransient<IProductService, ProductsClient>();
             services.AddTransient<IValuesService, ValuesClient>();

@@ -13,8 +13,9 @@
 @if (Model != null)
 {
     <div class="container">
+        <vc:bread-crumbs display-action-name="@ViewBag.Title" />
         <h4>detailed info about employee: @Model.FirstName @Model.LastName ...</h4>
-        <br />
+        <br/>
         <dl class="row">
             <dt class="col-sm-2" hidden="hidden">@Html.DisplayNameFor(model => model.Id)&nbsp;</dt>
             <dd class="col-sm-10" hidden="hidden">
@@ -45,14 +46,15 @@
                 @Html.DisplayFor(model => model.Salary)&nbsp;$
             </dd>
         </dl>
-        <br />
+        <br/>
         <table>
             <tr>
                 <td>@Html.ActionLink("<< back to list", "Index") |</td>
                 @if (User.IsInRole(Role.Admin))
                 {
-                    <td><form asp-action="Emp_Del_BadGuy" asp-route-id="@Model.Id"><input type="submit" class="delconfirm" style="color: red;" value="Delete" /></form></td>
-                    <td>| @Html.ActionLink("edit >>", "Emp_Edit", new { id = Model.Id })</td>
+                    <td>
+                        <form asp-action="Emp_Del_BadGuy" asp-route-id="@Model.Id"><input type="submit" class="delconfirm" style="color: red;" value="Delete"/></form></td>
+                    <td>| @Html.ActionLink("edit >>", "Emp_Edit", new {id = Model.Id})</td>
                 }
             </tr>
         </table>
@@ -60,5 +62,8 @@
 }
 else
 {
-    <div class="container"><h4>sorry... employee with such ID not found!</h4></div>
+    <div class="container">
+        <vc:bread-crumbs />
+        <h4>sorry... employee with such ID not found!</h4>
+    </div>
 }

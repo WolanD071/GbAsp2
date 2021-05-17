@@ -1,0 +1,34 @@
+﻿@model GbWebApp.ViewModels.BreadCrumbsViewModel
+
+<div class="breadcrumbs">
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">H O M E</a></li>
+        @if (Model.Controller != null && Model.Controller != "Home")
+        {
+            <li><a asp-controller="@Model.Controller" asp-action="Index">@Model.Controller</a></li>
+            @if (Model.ActionName != "Index" && Model.ActionName != "ShopDetails")
+            {
+                <li><a asp-controller="@Model.Controller" asp-action="@Model.ActionName">@Model.ActionDisp</a></li>
+            }
+        }
+        @if (Model.Controller == "Shop")
+        {
+            @if (Model.Section != null)
+            {
+                @if (Model.Section.Parent != null)
+                {
+                    <li><a asp-controller="Shop" asp-action="Index" asp-route-SectionId="@Model.Section.Parent.Id">@Model.Section.Parent.Name</a></li>
+                }
+                <li><a asp-controller="Shop" asp-action="Index" asp-route-SectionId="@Model.Section.Id">@Model.Section.Name</a></li>
+            }
+            @if (Model.Brand != null)
+            {
+                <li><a asp-controller="Shop" asp-action="Index" asp-route-BrandId="@Model.Brand.Id">@Model.Brand.Name</a></li>
+            }
+            @if (Model.Product != null)
+            {
+                <li>@Model.Product.Name</li>
+            }
+        }
+    </ol>
+</div>
